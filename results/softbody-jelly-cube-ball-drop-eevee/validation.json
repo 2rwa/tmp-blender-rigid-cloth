@@ -1,0 +1,41 @@
+{
+  "video": "softbody-jelly-cube-ball-drop-eevee.mp4",
+  "preview": {
+    "path": "output/preview.png",
+    "size_bytes": 196602,
+    "width": 480,
+    "height": 360,
+    "luminance_min": 0,
+    "luminance_max": 235,
+    "luminance_mean": 57.401,
+    "luminance_stddev": 56.266,
+    "sha256": "4caeaf426191728dd6d9ba411ad6c0dc630af7fb014a88abcc94d1c18414804e"
+  },
+  "movie": {
+    "path": "output/softbody-jelly-cube-ball-drop-eevee.mp4",
+    "size_bytes": 43209,
+    "width": 480,
+    "height": 360,
+    "duration_seconds": 8.0,
+    "avg_frame_rate": "24/1",
+    "nb_frames": "192",
+    "sha256": "308ece0edc5847ff9ca4fb68259d93a21f659d1caca9b1fa00d28ecb36221e6d"
+  },
+  "report": {
+    "engine": "BLENDER_EEVEE",
+    "jelly_vertex_count": 866,
+    "jelly_face_count": 864,
+    "baked_shape_keys": 192,
+    "shape_key_count": 193,
+    "simulation_seconds": 1.835,
+    "max_displacement": 1.21717,
+    "max_displacement_frame": 59,
+    "rigid_body_count": 3,
+    "rigid_body_bake_seconds": 0.031,
+    "rigid_body_proxy": "JellyRigidProxy",
+    "substeps_per_frame": 8,
+    "solver_iterations": 30,
+    "possible_proxy_tunneling": [],
+    "blend_size_bytes": 3866244
+  }
+}
