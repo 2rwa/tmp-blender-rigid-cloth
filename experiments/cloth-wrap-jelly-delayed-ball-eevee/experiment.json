@@ -1,0 +1,29 @@
+{
+  "id": "cloth-wrap-jelly-delayed-ball-eevee",
+  "title": "Cloth Wrap on Jelly with Delayed Ball EEVEE",
+  "description": "A smaller high-friction cloth settles over the jelly, then one heavier rigid-body ball is released exactly two seconds later to press the cloth into the deforming jelly surface.",
+  "preview_source": "preview.png",
+  "render_mode": "frame-sequence",
+  "frame_sequence": {
+    "start": 1,
+    "end": 192,
+    "fps": 24,
+    "chunk_size": 24,
+    "preview_frame": 74,
+    "blend": "cloth-wrap-jelly-delayed-ball-eevee.blend",
+    "video": "cloth-wrap-jelly-delayed-ball-eevee.mp4"
+  },
+  "prepared_outputs": [
+    "cloth-wrap-jelly-delayed-ball-eevee.blend",
+    "cloth-wrap-jelly-delayed-ball-eevee-report.json"
+  ],
+  "required_outputs": [
+    "preview.png",
+    "cloth-wrap-jelly-delayed-ball-eevee.mp4",
+    "cloth-wrap-jelly-delayed-ball-eevee.blend",
+    "cloth-wrap-jelly-delayed-ball-eevee-report.json"
+  ],
+  "repo_blends": [
+    "cloth-wrap-jelly-delayed-ball-eevee.blend"
+  ]
+}
