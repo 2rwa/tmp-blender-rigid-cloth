@@ -34,6 +34,27 @@ The validator requires more than a valid MP4:
 
 The report explicitly marks `true_fluid: false` so this approximation is not confused with Mantaflow.
 
+## Run #5: direct live coupling failure
+
+The first implementation made the live Cloth and live Soft Body blob Collision objects for each other. Blender 4.0.2 reported explicit dependency cycles:
+
+- Soft Body depended on Cloth geometry via Softbody Collision;
+- Cloth depended on blob geometry via Cloth Collision;
+- both modifier stacks therefore closed a dependency loop.
+
+The simulation continued far enough to show progressive instability, then the fail-fast guard stopped it at frame 179 when blob displacement exceeded 8 units.
+
+This is useful evidence: direct mutual live Cloth/Soft Body Collision is not a valid dependency-graph architecture for this headless experiment.
+
+The corrected version uses staged coupling:
+
+1. Cloth falls against a smaller hidden proxy inside the intended blob volume and is baked.
+2. The proxy is removed.
+3. The baked animated Cloth becomes a deterministic collider.
+4. The live Soft Body blob is simulated against that baked Cloth and then baked.
+
+This preserves a measurable Cloth -> blob response while breaking the dependency cycle.
+
 ## Next steps
 
 If this direct live coupling is stable:
