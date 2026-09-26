@@ -353,7 +353,7 @@ def bake_cloth_pass(scene, cloth, cloth_mod, live_blob_coords):
     }
 
 
-def bake_blob_pass(scene, blob, soft_mod, cloth_frames, initial_blob_coords):
+def bake_blob_pass(scene, blob, soft_mod, cloth, cloth_frames, initial_blob_coords):
     depsgraph = bpy.context.evaluated_depsgraph_get()
     basis = [tuple(v.co) for v in blob.data.vertices]
     frames = {}
@@ -546,6 +546,7 @@ def build_scene():
         scene,
         blob,
         soft_mod,
+        cloth,
         cloth_bake["frames"],
         initial_blob_coords,
     )

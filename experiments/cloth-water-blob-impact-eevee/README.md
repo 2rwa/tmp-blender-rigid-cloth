@@ -95,3 +95,10 @@ Observed staged solve before correcting the metric:
 The corrected version transforms evaluated geometry to world space for contact/height measurements while retaining local coordinates for shape-key baking.
 
 Another useful observation is that Soft Body collision response may push the blob surface away from the already-baked Cloth after initial overlap. Therefore a near-zero center gap is not required as the sole proof of interaction; displacement, center-top drop, coverage, and minimum world-space gap are evaluated together.
+
+
+## Run #7: world-space metric patch typo
+
+The world-space correction itself worked: the Cloth pass reported a center gap of about `-0.18` after settling, confirming that the baked Cloth penetrates the intended full-size blob envelope as designed.
+
+The run then stopped before the Soft Body pass because the patch referenced `cloth` inside `bake_blob_pass()` without passing that object into the function. This was a plain Python `NameError`, not a Blender physics failure. The function signature and call were corrected in the next run.
