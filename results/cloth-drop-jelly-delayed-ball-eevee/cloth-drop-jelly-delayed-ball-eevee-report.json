@@ -1,0 +1,70 @@
+{
+  "experiment": "cloth-drop-jelly-delayed-ball-eevee",
+  "engine": "BLENDER_EEVEE",
+  "frame_start": 1,
+  "frame_end": 192,
+  "fps": 24,
+  "resolution_x": 480,
+  "resolution_y": 360,
+  "effective_render_samples": 16,
+  "coupling": {
+    "mode": "two-pass one-way coupling",
+    "pass_1": "delayed rigid ball -> soft-body jelly",
+    "pass_2": "baked jelly + baked ball -> cloth",
+    "cloth_reads_jelly_collision": true,
+    "jelly_reads_cloth_collision": false,
+    "ball_feels_cloth": false
+  },
+  "jelly": {
+    "name": "JellyCube",
+    "vertex_count": 866,
+    "face_count": 864,
+    "baked_shape_keys": 192,
+    "shape_key_count": 193,
+    "simulation_seconds": 1.343,
+    "max_displacement": 0.847191,
+    "max_displacement_frame": 74
+  },
+  "cloth": {
+    "name": "DropCloth",
+    "grid_x": 35,
+    "grid_y": 29,
+    "vertex_count": 1015,
+    "face_count": 952,
+    "self_collision": true,
+    "baked_shape_keys": 192,
+    "shape_key_count": 193,
+    "simulation_seconds": 11.475,
+    "max_displacement": 4.50573,
+    "max_displacement_frame": 192,
+    "min_vertex_z": 0.04645,
+    "min_vertex_z_frame": 192
+  },
+  "ball": {
+    "name": "DropBall_00",
+    "radius": 0.42,
+    "mass": 2.0,
+    "release_frame": 49,
+    "release_seconds": 2.0,
+    "start_location": [
+      0.28,
+      -0.08,
+      7.2
+    ],
+    "final_location": [
+      0.28,
+      -0.08,
+      2.48
+    ],
+    "min_center_z_in_proxy_footprint": 2.48,
+    "min_center_z_frame": 75,
+    "possible_proxy_tunneling": false
+  },
+  "rigid_body": {
+    "proxy": "JellyRigidProxy",
+    "world_substeps_per_frame": 8,
+    "world_solver_iterations": 30,
+    "bake_seconds": 0.006
+  },
+  "blend": "cloth-drop-jelly-delayed-ball-eevee.blend"
+}

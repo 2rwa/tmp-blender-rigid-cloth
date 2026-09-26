@@ -1,0 +1,20 @@
+{
+  "experiment": "cloth-drop-jelly-delayed-ball-eevee",
+  "source_sha": "69175d40b1c7a38cd2515b7045c457a922a7eedd",
+  "run_id": "36246553134",
+  "run_number": "3",
+  "render_mode": "frame-sequence",
+  "frame_sequence": {
+    "start": 1,
+    "end": 192,
+    "fps": 24,
+    "chunk_size": 24,
+    "preview_frame": 92,
+    "blend": "cloth-drop-jelly-delayed-ball-eevee.blend",
+    "video": "cloth-drop-jelly-delayed-ball-eevee.mp4"
+  },
+  "published_prepared_outputs": [
+    "cloth-drop-jelly-delayed-ball-eevee.blend",
+    "cloth-drop-jelly-delayed-ball-eevee-report.json"
+  ]
+}
