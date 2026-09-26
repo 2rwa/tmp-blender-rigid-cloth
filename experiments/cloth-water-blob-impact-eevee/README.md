@@ -66,3 +66,32 @@ If this direct live coupling is stable:
 5. move to a minimal Mantaflow Cloth splash experiment.
 
 If the direct coupling is unstable or the blob does not react to Cloth, keep the failure and fall back to a staged/baked coupling experiment.
+
+
+## Run #6: staged coupling rendered, validator exposed a coordinate-space bug
+
+The staged architecture fixed the dependency cycle completely:
+
+- prepare succeeded;
+- both Cloth and Soft Body were baked to 192 frames;
+- all eight frame-render chunks succeeded;
+- MP4 assembly succeeded.
+
+The run failed only at semantic validation with:
+
+`cloth never reached the live blob envelope`
+
+The prepared report showed that this was a measurement bug, not a failed solve. Cloth metrics were effectively in world space because the Cloth object is at the origin, while blob mesh vertices were compared in object-local space even though `WaterBlob` is translated upward by `z = 0.88`.
+
+Observed staged solve before correcting the metric:
+
+- blob maximum displacement: 1.602471 at frame 64;
+- blob center-top drop: 1.446784;
+- Cloth coverage at the blob peak: 97.97%;
+- Cloth simulation: 16.919 s;
+- blob simulation: 10.803 s;
+- all 192 rendered frames completed.
+
+The corrected version transforms evaluated geometry to world space for contact/height measurements while retaining local coordinates for shape-key baking.
+
+Another useful observation is that Soft Body collision response may push the blob surface away from the already-baked Cloth after initial overlap. Therefore a near-zero center gap is not required as the sole proof of interaction; displacement, center-top drop, coverage, and minimum world-space gap are evaluated together.

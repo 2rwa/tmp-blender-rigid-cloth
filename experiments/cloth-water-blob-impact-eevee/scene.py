@@ -7,6 +7,7 @@ import time
 from pathlib import Path
 
 import bpy
+from mathutils import Vector
 
 ROOT = Path.cwd()
 OUTPUT_DIR = ROOT / "output"
@@ -209,6 +210,11 @@ def eval_coords(obj, depsgraph):
     return coords
 
 
+def to_world_coords(obj, coords):
+    matrix = obj.matrix_world.copy()
+    return [tuple(matrix @ Vector(co)) for co in coords]
+
+
 def center_top(coords):
     region = [
         co for co in coords
@@ -294,7 +300,8 @@ def bake_cloth_pass(scene, cloth, cloth_mod, live_blob_coords):
             raise RuntimeError(f"cloth topology changed at frame {frame}")
 
         frames[frame] = coords
-        metric = cloth_metrics(coords, live_blob_coords)
+        cloth_world = to_world_coords(cloth, coords)
+        metric = cloth_metrics(cloth_world, live_blob_coords)
         metrics[frame] = metric
 
         frame_max = 0.0
@@ -367,7 +374,9 @@ def bake_blob_pass(scene, blob, soft_mod, cloth_frames, initial_blob_coords):
             raise RuntimeError(f"blob topology changed at frame {frame}")
 
         frames[frame] = coords
-        metrics[frame] = cloth_metrics(cloth_frames[frame], coords)
+        cloth_world = to_world_coords(cloth, cloth_frames[frame])
+        blob_world = to_world_coords(blob, coords)
+        metrics[frame] = cloth_metrics(cloth_world, blob_world)
 
         frame_max = 0.0
         for base, co in zip(basis, coords):
@@ -391,8 +400,8 @@ def bake_blob_pass(scene, blob, soft_mod, cloth_frames, initial_blob_coords):
     seconds = time.perf_counter() - started
     peak_metric = metrics[peak_frame]
 
-    initial_top = center_top(initial_blob_coords)
-    peak_top = center_top(frames[peak_frame])
+    initial_top = center_top(to_world_coords(blob, initial_blob_coords))
+    peak_top = center_top(to_world_coords(blob, frames[peak_frame]))
     center_top_drop = (
         initial_top - peak_top
         if initial_top is not None and peak_top is not None
@@ -493,6 +502,7 @@ def build_scene():
         render=True,
     )
     initial_blob_coords = [tuple(v.co) for v in blob.data.vertices]
+    initial_blob_world_coords = to_world_coords(blob, initial_blob_coords)
 
     proxy = make_blob(
         base,
@@ -516,7 +526,7 @@ def build_scene():
         scene,
         cloth,
         cloth_mod,
-        initial_blob_coords,
+        initial_blob_world_coords,
     )
 
     # The proxy has served its purpose. Remove it before the live Soft Body
