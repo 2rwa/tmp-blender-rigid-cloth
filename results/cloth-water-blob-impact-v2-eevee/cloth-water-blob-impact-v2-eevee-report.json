@@ -1,0 +1,65 @@
+{
+  "experiment": "cloth-water-blob-impact-v2-eevee",
+  "engine": "BLENDER_EEVEE",
+  "frame_start": 1,
+  "frame_end": 192,
+  "fps": 24,
+  "resolution_x": 480,
+  "resolution_y": 360,
+  "effective_render_samples": 16,
+  "coupling": {
+    "mode": "three-pass staged coupling with cloth reconciliation",
+    "pass_1": "guide cloth -> hidden initial-blob proxy",
+    "pass_2": "baked guide cloth -> live soft-body water blob",
+    "pass_3": "fresh final cloth -> baked animated water blob",
+    "bidirectional_feedback": false,
+    "true_fluid": false,
+    "goal": "reduce V1 floating/separation without reintroducing a dependency cycle"
+  },
+  "blob": {
+    "name": "WaterBlobV2",
+    "vertex_count": 546,
+    "face_count": 576,
+    "baked_shape_keys": 192,
+    "shape_key_count": 193,
+    "simulation_seconds": 11.548,
+    "max_displacement": 1.604002,
+    "max_displacement_frame": 63,
+    "initial_center_top_z": 1.63,
+    "center_top_z_at_peak": 0.187232,
+    "center_top_drop": 1.442768
+  },
+  "guide_cloth": {
+    "name": "WaterGuideCloth",
+    "hidden_render": true,
+    "simulation_seconds": 15.78,
+    "max_displacement": 3.573295,
+    "first_contact_frame": 23,
+    "center_gap_at_blob_peak": 1.285187,
+    "coverage_at_blob_peak": 0.980645
+  },
+  "final_cloth": {
+    "name": "WaterDropClothV2",
+    "vertex_count": 1085,
+    "face_count": 1020,
+    "self_collision": true,
+    "baked_shape_keys": 192,
+    "shape_key_count": 193,
+    "simulation_seconds": 22.222,
+    "max_displacement": 3.599696,
+    "max_displacement_frame": 188,
+    "min_vertex_z": -0.01272,
+    "min_vertex_z_frame": 166,
+    "first_contact_frame": 27,
+    "center_gap_at_blob_peak": 0.059224,
+    "coverage_at_blob_peak": 0.782488,
+    "max_positive_center_gap_after_contact": 0.161919
+  },
+  "comparison": {
+    "v1_observed_gap_at_blob_peak": 1.264967,
+    "guide_gap_at_blob_peak": 1.285187,
+    "final_gap_at_blob_peak": 0.059224,
+    "gap_improvement_from_guide": 1.225963
+  },
+  "blend": "cloth-water-blob-impact-v2-eevee.blend"
+}
