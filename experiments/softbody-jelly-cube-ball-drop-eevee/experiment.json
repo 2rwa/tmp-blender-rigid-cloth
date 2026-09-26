@@ -1,0 +1,29 @@
+{
+  "id": "softbody-jelly-cube-ball-drop-eevee",
+  "title": "Soft Body Jelly Cube Ball Drop EEVEE",
+  "description": "Three gravity-driven rigid-body balls fall onto a rounded Soft Body jelly cube. Jelly deformation and rigid-body transforms are sampled sequentially and baked before parallel EEVEE frame rendering.",
+  "preview_source": "preview.png",
+  "render_mode": "frame-sequence",
+  "frame_sequence": {
+    "start": 1,
+    "end": 192,
+    "fps": 24,
+    "chunk_size": 24,
+    "preview_frame": 92,
+    "blend": "softbody-jelly-cube-ball-drop-eevee.blend",
+    "video": "softbody-jelly-cube-ball-drop-eevee.mp4"
+  },
+  "prepared_outputs": [
+    "softbody-jelly-cube-ball-drop-eevee.blend",
+    "softbody-jelly-cube-ball-drop-eevee-report.json"
+  ],
+  "required_outputs": [
+    "preview.png",
+    "softbody-jelly-cube-ball-drop-eevee.mp4",
+    "softbody-jelly-cube-ball-drop-eevee.blend",
+    "softbody-jelly-cube-ball-drop-eevee-report.json"
+  ],
+  "repo_blends": [
+    "softbody-jelly-cube-ball-drop-eevee.blend"
+  ]
+}
