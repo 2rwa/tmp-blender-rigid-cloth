@@ -1,0 +1,71 @@
+{
+  "experiment": "cloth-water-blob-impact-eevee",
+  "engine": "BLENDER_EEVEE",
+  "frame_start": 1,
+  "frame_end": 192,
+  "fps": 24,
+  "resolution_x": 480,
+  "resolution_y": 360,
+  "effective_render_samples": 16,
+  "coupling": {
+    "mode": "two-pass staged cloth-to-softbody coupling",
+    "pass_1": "cloth -> smaller hidden initial-blob proxy",
+    "pass_2": "baked cloth -> live soft-body water blob",
+    "cloth_reads_initial_blob_proxy": true,
+    "blob_reads_baked_cloth_collision": true,
+    "bidirectional_feedback": false,
+    "true_fluid": false,
+    "direct_live_mutual_collision_attempt": "failed with Blender dependency cycle in run 5"
+  },
+  "blob": {
+    "name": "WaterBlob",
+    "half_extents": [
+      1.55,
+      1.3,
+      0.75
+    ],
+    "vertex_count": 546,
+    "face_count": 576,
+    "baked_shape_keys": 192,
+    "shape_key_count": 193,
+    "simulation_seconds": 10.803,
+    "max_displacement": 1.602471,
+    "max_displacement_frame": 64,
+    "initial_center_top_z": 0.75,
+    "center_top_z_at_peak": -0.696784,
+    "center_top_drop": 1.446784
+  },
+  "cloth": {
+    "name": "WaterDropCloth",
+    "grid_x": 35,
+    "grid_y": 31,
+    "vertex_count": 1085,
+    "face_count": 1020,
+    "self_collision": true,
+    "baked_shape_keys": 192,
+    "shape_key_count": 193,
+    "simulation_seconds": 16.919,
+    "max_displacement": 3.532223,
+    "max_displacement_frame": 184,
+    "min_vertex_z": 0.034998,
+    "min_vertex_z_frame": 177,
+    "first_live_blob_contact_frame": null
+  },
+  "interaction": {
+    "coverage_at_blob_peak": 0.979724,
+    "center_gap_at_blob_peak": 2.144705,
+    "min_abs_center_gap": 1.254365,
+    "min_abs_center_gap_frame": 26
+  },
+  "proxy": {
+    "name": "WaterBlobClothProxy",
+    "half_extents": [
+      1.46,
+      1.22,
+      0.62
+    ],
+    "z": 0.82,
+    "removed_before_blob_pass": true
+  },
+  "blend": "cloth-water-blob-impact-eevee.blend"
+}
