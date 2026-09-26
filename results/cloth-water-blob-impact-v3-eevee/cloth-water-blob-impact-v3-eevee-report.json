@@ -22,27 +22,24 @@
     "face_count": 576,
     "baked_shape_keys": 192,
     "shape_key_count": 193,
-    "simulation_seconds": 11.943,
-    "max_displacement": 1.602322,
+    "simulation_seconds": 11.395,
+    "max_displacement": 1.602084,
     "max_displacement_frame": 64,
-    "center_top_drop": 1.446559
+    "center_top_drop": 1.447046
   },
   "collision_shell": {
     "name": "WaterBlobCollisionShell",
-    "scale": [
-      1.045,
-      1.045,
-      1.07
-    ],
-    "collision_thickness": 0.014,
+    "expansion_mode": "solidify outward along animated surface normals",
+    "solidify_thickness": 0.075,
+    "collision_thickness": 0.01,
     "shares_blob_shape_keys": true,
     "hidden_render": true,
     "removed_after_final_cloth_bake": true
   },
   "guide_cloth": {
-    "simulation_seconds": 15.424,
-    "center_gap_at_blob_peak": 1.283694,
-    "coverage_at_blob_peak": 0.978802
+    "simulation_seconds": 15.728,
+    "center_gap_at_blob_peak": 1.285816,
+    "coverage_at_blob_peak": 0.979724
   },
   "final_cloth": {
     "name": "WaterDropClothV3",
@@ -51,24 +48,24 @@
     "self_collision": true,
     "baked_shape_keys": 192,
     "shape_key_count": 193,
-    "simulation_seconds": 12.85,
-    "max_displacement": 3.428627,
-    "max_displacement_frame": 161,
-    "min_vertex_z": 0.00874,
-    "min_vertex_z_frame": 58,
+    "simulation_seconds": 13.567,
+    "max_displacement": 3.442644,
+    "max_displacement_frame": 86,
+    "min_vertex_z": 0.030037,
+    "min_vertex_z_frame": 78,
     "first_contact_frame": 26,
-    "center_gap_at_blob_peak": -0.06156,
+    "center_gap_at_blob_peak": 0.054504,
     "coverage_at_blob_peak": 0.762212,
-    "min_center_gap_after_contact": -0.135045,
+    "min_center_gap_after_contact": 0.022391,
     "max_center_gap_after_contact": 0.265121
   },
   "comparison": {
     "v1_gap_at_blob_peak": 1.264967,
     "v2_gap_at_blob_peak": 0.059224,
     "v2_max_positive_gap_after_contact": 0.161919,
-    "v3_guide_gap_at_blob_peak": 1.283694,
-    "v3_final_gap_at_blob_peak": -0.06156,
-    "v3_gap_improvement_from_guide": 1.345254
+    "v3_guide_gap_at_blob_peak": 1.285816,
+    "v3_final_gap_at_blob_peak": 0.054504,
+    "v3_gap_improvement_from_guide": 1.231312
   },
   "blend": "cloth-water-blob-impact-v3-eevee.blend"
 }
