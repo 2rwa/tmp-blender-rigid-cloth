@@ -1,8 +1,8 @@
 {
   "experiment": "cloth-water-blob-impact-eevee",
-  "source_sha": "3a2038f957188195b5b3233cf06e2f39c1c5e032",
-  "run_id": "36277326647",
-  "run_number": "8",
+  "source_sha": "9c95751a52e551055dfe28f8ccef8a9e95b16431",
+  "run_id": "36277898368",
+  "run_number": "9",
   "render_mode": "frame-sequence",
   "frame_sequence": {
     "start": 1,
