@@ -1,0 +1,48 @@
+{
+  "video": "cloth-wrap-jelly-delayed-ball-eevee.mp4",
+  "preview": {
+    "path": "output/preview.png",
+    "size_bytes": 203568,
+    "width": 480,
+    "height": 360,
+    "luminance_min": 0,
+    "luminance_max": 236,
+    "luminance_mean": 53.713,
+    "luminance_stddev": 52.422,
+    "sha256": "61756bf6ff4ddf971070592911ef2157727de2bc39ef1f440d69338b5f2e07d2"
+  },
+  "movie": {
+    "path": "output/cloth-wrap-jelly-delayed-ball-eevee.mp4",
+    "size_bytes": 48381,
+    "width": 480,
+    "height": 360,
+    "duration_seconds": 8.0,
+    "avg_frame_rate": "24/1",
+    "nb_frames": "192",
+    "sha256": "90d6d6d8d4dd2aca892b42dffed4b92bbfeb677a5086b183a109f6538c6c1733"
+  },
+  "report": {
+    "engine": "BLENDER_EEVEE",
+    "jelly_max_displacement": 1.591789,
+    "jelly_max_displacement_frame": 75,
+    "cloth_vertex_count": 1085,
+    "cloth_coverage_at_release": 0.906912,
+    "cloth_coverage_at_impact": 0.970507,
+    "cloth_center_z_at_release": 2.627247,
+    "cloth_center_z_at_impact": 2.271256,
+    "cloth_center_press_depth": 0.355991,
+    "cloth_min_vertex_z": 1.914635,
+    "ball_release_frame": 49,
+    "ball_release_seconds": 2.0,
+    "ball_impact_frame": 71,
+    "ball_final_location": [
+      0.0,
+      0.0,
+      2.56
+    ],
+    "possible_proxy_tunneling": false,
+    "substeps_per_frame": 10,
+    "solver_iterations": 35,
+    "blend_size_bytes": 6162972
+  }
+}
