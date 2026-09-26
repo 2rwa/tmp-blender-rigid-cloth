@@ -51,3 +51,21 @@ At maximum blob deformation, the visible Cloth/blob gap should remain in the use
 If this works, the approximation is still not a true two-way fluid/cloth solve, but it is a practical visually coherent staged method.
 
 If it does not work, the remaining artifact is likely inherent enough to this staged Soft Body approximation that the next useful step should be Mantaflow/FLIP rather than adding more reconciliation passes.
+
+
+## Run #10: scale-based shell almost worked, but expansion origin was wrong
+
+The first V3 implementation completed prepare and all eight render chunks, then failed only semantic validation.
+
+Measured values:
+
+- blob peak frame: 64;
+- V3 final Cloth gap at peak: **-0.061560**;
+- minimum center gap after contact: **-0.135045**;
+- maximum center gap after contact: **+0.265121**.
+
+The target bands were peak >= -0.05 and minimum >= -0.12, so the run missed by only about 0.01-0.02 units.
+
+More importantly, the reason is structural and identifiable. The collision shell was expanded with object scale around the blob object's fixed origin. At strong deformation the blob's visible upper surface can move below that origin. Multiplying its local negative Z by a scale greater than 1 then moves that surface farther downward, which is the opposite of an outward shell.
+
+The corrected V3 keeps the same three-pass architecture but replaces object-scale expansion with a **Solidify modifier before Collision**. This creates an outer collision skin along the animated surface normals, so "outward" follows the deformed blob rather than a fixed object origin.

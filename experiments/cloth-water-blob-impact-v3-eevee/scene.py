@@ -19,8 +19,8 @@ REPORT_PATH = OUTPUT_DIR / f"{EXPERIMENT}-report.json"
 FRAME_START, FRAME_END, FPS = 1, 192, 24
 RES_X, RES_Y = 480, 360
 
-SHELL_SCALE = (1.045, 1.045, 1.070)
-SHELL_COLLISION_THICKNESS = 0.014
+SHELL_SOLIDIFY_THICKNESS = 0.075
+SHELL_COLLISION_THICKNESS = 0.010
 
 
 def load_module(name: str, relative_path: str):
@@ -35,15 +35,21 @@ def load_module(name: str, relative_path: str):
 
 def make_animated_collision_shell(base, blob):
     shell = blob.copy()
-    # Deliberately share the baked Mesh/Key datablock: the shell receives
-    # exactly the same shape-key animation as the visible blob, but an object
-    # scale expands it into a thin collision envelope.
+    # Share the baked Mesh/Key datablock so the shell receives exactly the
+    # same animation as the visible blob. Do NOT expand by object scale:
+    # when the blob collapses below its object origin, scaling Z can move the
+    # upper surface inward. Instead, create a normal-following outer skin.
     shell.data = blob.data
     shell.name = "WaterBlobCollisionShell"
     shell.hide_render = True
     shell.display_type = "WIRE"
-    shell.scale = SHELL_SCALE
+    shell.scale = (1.0, 1.0, 1.0)
     bpy.context.collection.objects.link(shell)
+
+    solid = shell.modifiers.new(name="CollisionSkin", type="SOLIDIFY")
+    solid.thickness = SHELL_SOLIDIFY_THICKNESS
+    solid.offset = 1.0
+    solid.use_rim = True
 
     base.add_collision(
         shell,
@@ -305,7 +311,8 @@ def build_scene():
         },
         "collision_shell": {
             "name": "WaterBlobCollisionShell",
-            "scale": list(SHELL_SCALE),
+            "expansion_mode": "solidify outward along animated surface normals",
+            "solidify_thickness": SHELL_SOLIDIFY_THICKNESS,
             "collision_thickness": SHELL_COLLISION_THICKNESS,
             "shares_blob_shape_keys": True,
             "hidden_render": True,
