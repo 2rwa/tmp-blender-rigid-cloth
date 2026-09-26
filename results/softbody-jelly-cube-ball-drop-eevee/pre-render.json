@@ -1,0 +1,20 @@
+{
+  "experiment": "softbody-jelly-cube-ball-drop-eevee",
+  "source_sha": "8ac3d934380917610e7e43c9d2515009e48263db",
+  "run_id": "36245202632",
+  "run_number": "2",
+  "render_mode": "frame-sequence",
+  "frame_sequence": {
+    "start": 1,
+    "end": 192,
+    "fps": 24,
+    "chunk_size": 24,
+    "preview_frame": 92,
+    "blend": "softbody-jelly-cube-ball-drop-eevee.blend",
+    "video": "softbody-jelly-cube-ball-drop-eevee.mp4"
+  },
+  "published_prepared_outputs": [
+    "softbody-jelly-cube-ball-drop-eevee.blend",
+    "softbody-jelly-cube-ball-drop-eevee-report.json"
+  ]
+}

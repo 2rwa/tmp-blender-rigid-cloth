@@ -1,0 +1,101 @@
+{
+  "experiment": "softbody-jelly-cube-ball-drop-eevee",
+  "engine": "BLENDER_EEVEE",
+  "frame_start": 1,
+  "frame_end": 192,
+  "fps": 24,
+  "resolution_x": 480,
+  "resolution_y": 360,
+  "requested_render_samples": 16,
+  "effective_render_samples": 16,
+  "prepare_only": true,
+  "jelly": {
+    "name": "JellyCube",
+    "vertex_count": 866,
+    "face_count": 864,
+    "baked_shape_keys": 192,
+    "shape_key_count": 193,
+    "simulation_seconds": 1.835,
+    "max_displacement": 1.21717,
+    "max_displacement_frame": 59,
+    "goal_default": 0.48,
+    "goal_spring": 0.46,
+    "goal_friction": 7.0,
+    "pull": 0.32,
+    "push": 0.32,
+    "bend": 0.34,
+    "stability_limit": 12.0
+  },
+  "rigid_bodies": {
+    "count": 3,
+    "bake_seconds": 0.031,
+    "world_substeps_per_frame": 8,
+    "world_solver_iterations": 30,
+    "proxy": "JellyRigidProxy",
+    "proxy_half_extents": [
+      1.18,
+      1.02,
+      0.72
+    ],
+    "balls": [
+      {
+        "name": "DropBall_00",
+        "radius": 0.38,
+        "mass": 1.2000000476837158,
+        "start_location": [
+          -0.72,
+          -0.28,
+          4.9
+        ],
+        "min_center_z_in_proxy_footprint": 2.44,
+        "min_center_z_frame": 19,
+        "final_location": [
+          -0.72,
+          -0.28,
+          2.44
+        ],
+        "possible_proxy_tunneling": false
+      },
+      {
+        "name": "DropBall_01",
+        "radius": 0.34,
+        "mass": 1.75,
+        "start_location": [
+          0.18,
+          0.34,
+          6.35
+        ],
+        "min_center_z_in_proxy_footprint": 2.357668,
+        "min_center_z_frame": 86,
+        "final_location": [
+          -1.386667,
+          6.289534,
+          0.34
+        ],
+        "possible_proxy_tunneling": false
+      },
+      {
+        "name": "DropBall_02",
+        "radius": 0.42,
+        "mass": 2.299999952316284,
+        "start_location": [
+          0.74,
+          -0.16,
+          7.85
+        ],
+        "min_center_z_in_proxy_footprint": 2.442727,
+        "min_center_z_frame": 47,
+        "final_location": [
+          8.692005,
+          -2.393143,
+          0.42
+        ],
+        "possible_proxy_tunneling": false
+      }
+    ]
+  },
+  "render_modifiers": [
+    "SUBSURF"
+  ],
+  "blend": "softbody-jelly-cube-ball-drop-eevee.blend"
+}
