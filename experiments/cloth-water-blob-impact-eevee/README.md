@@ -102,3 +102,23 @@ Another useful observation is that Soft Body collision response may push the blo
 The world-space correction itself worked: the Cloth pass reported a center gap of about `-0.18` after settling, confirming that the baked Cloth penetrates the intended full-size blob envelope as designed.
 
 The run then stopped before the Soft Body pass because the patch referenced `cloth` inside `bake_blob_pass()` without passing that object into the function. This was a plain Python `NameError`, not a Blender physics failure. The function signature and call were corrected in the next run.
+
+
+## Run #8: technically successful, visually floating
+
+Run #8 completed successfully through prepare, all eight render chunks, validation, publication, and Pages deployment.
+
+Measured result:
+
+- blob maximum displacement: 1.602084 at frame 64;
+- blob center-top drop: 1.447046;
+- Cloth coverage at blob peak: 97.97%;
+- first Cloth/blob contact: frame 23;
+- minimum center gap: 0.374365 at frame 26;
+- **center gap at blob deformation peak: 1.264967**.
+
+Visual inspection exposed an important limitation that the validator did not yet reject: after the guide Cloth trajectory was baked, the Soft Body blob could deform/recover independently. The already-baked Cloth could no longer follow that final blob motion, so it appeared to float above the blob even though the run had interacted correctly earlier.
+
+This is a staged-coupling temporal mismatch, not a renderer failure.
+
+V2 therefore keeps this run intact as evidence and adds a third reconciliation pass: after the blob is baked, a fresh visible Cloth is simulated against the final animated blob.

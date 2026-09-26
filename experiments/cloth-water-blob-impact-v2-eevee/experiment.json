@@ -1,0 +1,29 @@
+{
+  "id": "cloth-water-blob-impact-v2-eevee",
+  "title": "Cloth Water-like Blob Impact V2 EEVEE",
+  "description": "A three-pass staged Cloth/Soft Body experiment. A guide Cloth first drives the water-like blob, then a fresh visible Cloth is solved against the baked animated blob to reduce the floating/separation artifact observed in V1.",
+  "preview_source": "preview.png",
+  "render_mode": "frame-sequence",
+  "frame_sequence": {
+    "start": 1,
+    "end": 192,
+    "fps": 24,
+    "chunk_size": 24,
+    "preview_frame": 64,
+    "blend": "cloth-water-blob-impact-v2-eevee.blend",
+    "video": "cloth-water-blob-impact-v2-eevee.mp4"
+  },
+  "prepared_outputs": [
+    "cloth-water-blob-impact-v2-eevee.blend",
+    "cloth-water-blob-impact-v2-eevee-report.json"
+  ],
+  "required_outputs": [
+    "preview.png",
+    "cloth-water-blob-impact-v2-eevee.mp4",
+    "cloth-water-blob-impact-v2-eevee.blend",
+    "cloth-water-blob-impact-v2-eevee-report.json"
+  ],
+  "repo_blends": [
+    "cloth-water-blob-impact-v2-eevee.blend"
+  ]
+}
