@@ -1,0 +1,20 @@
+{
+  "experiment": "cloth-water-blob-impact-v3-eevee",
+  "source_sha": "948b02e16772dbf25b6e3909b5737f1a0257f01f",
+  "run_id": "36278629054",
+  "run_number": "10",
+  "render_mode": "frame-sequence",
+  "frame_sequence": {
+    "start": 1,
+    "end": 192,
+    "fps": 24,
+    "chunk_size": 24,
+    "preview_frame": 63,
+    "blend": "cloth-water-blob-impact-v3-eevee.blend",
+    "video": "cloth-water-blob-impact-v3-eevee.mp4"
+  },
+  "published_prepared_outputs": [
+    "cloth-water-blob-impact-v3-eevee.blend",
+    "cloth-water-blob-impact-v3-eevee-report.json"
+  ]
+}
