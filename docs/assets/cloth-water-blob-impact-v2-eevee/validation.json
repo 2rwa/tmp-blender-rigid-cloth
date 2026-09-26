@@ -1,0 +1,38 @@
+{
+  "video": "cloth-water-blob-impact-v2-eevee.mp4",
+  "preview": {
+    "path": "output/preview.png",
+    "size_bytes": 183015,
+    "width": 480,
+    "height": 360,
+    "luminance_min": 0,
+    "luminance_max": 218,
+    "luminance_mean": 45.446,
+    "luminance_stddev": 53.509,
+    "sha256": "be88c19926f5c08f51029c99fb368f23a34c30855be693d6ebfd5aa6492f656f"
+  },
+  "movie": {
+    "path": "output/cloth-water-blob-impact-v2-eevee.mp4",
+    "size_bytes": 50869,
+    "width": 480,
+    "height": 360,
+    "duration_seconds": 8.0,
+    "avg_frame_rate": "24/1",
+    "nb_frames": "192",
+    "sha256": "550bc8a8ea5ce818a53c7de9de2cc73c2eb200a611859d803b7b43d2bd3d2b3b"
+  },
+  "report": {
+    "engine": "BLENDER_EEVEE",
+    "blob_max_displacement": 1.604002,
+    "blob_peak_frame": 63,
+    "guide_gap_at_blob_peak": 1.285187,
+    "final_gap_at_blob_peak": 0.059224,
+    "gap_improvement_from_guide": 1.225963,
+    "final_coverage_at_blob_peak": 0.782488,
+    "max_positive_gap_after_contact": 0.161919,
+    "guide_simulation_seconds": 15.78,
+    "blob_simulation_seconds": 11.548,
+    "final_cloth_simulation_seconds": 22.222,
+    "blend_size_bytes": 7871744
+  }
+}
