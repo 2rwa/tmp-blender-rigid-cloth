@@ -1,0 +1,29 @@
+{
+  "id": "cloth-drop-jelly-delayed-ball-eevee",
+  "title": "Cloth Drop on Jelly with Delayed Ball EEVEE",
+  "description": "A free cloth sheet falls onto a Soft Body jelly cube, then one rigid-body ball is released exactly two seconds later. The simulation is baked in two stable one-way passes before parallel EEVEE rendering.",
+  "preview_source": "preview.png",
+  "render_mode": "frame-sequence",
+  "frame_sequence": {
+    "start": 1,
+    "end": 192,
+    "fps": 24,
+    "chunk_size": 24,
+    "preview_frame": 92,
+    "blend": "cloth-drop-jelly-delayed-ball-eevee.blend",
+    "video": "cloth-drop-jelly-delayed-ball-eevee.mp4"
+  },
+  "prepared_outputs": [
+    "cloth-drop-jelly-delayed-ball-eevee.blend",
+    "cloth-drop-jelly-delayed-ball-eevee-report.json"
+  ],
+  "required_outputs": [
+    "preview.png",
+    "cloth-drop-jelly-delayed-ball-eevee.mp4",
+    "cloth-drop-jelly-delayed-ball-eevee.blend",
+    "cloth-drop-jelly-delayed-ball-eevee-report.json"
+  ],
+  "repo_blends": [
+    "cloth-drop-jelly-delayed-ball-eevee.blend"
+  ]
+}
