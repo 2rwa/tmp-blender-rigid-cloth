@@ -1,0 +1,41 @@
+{
+  "video": "cloth-hammock-rigidbody-drop-eevee.mp4",
+  "preview": {
+    "path": "output/preview.png",
+    "size_bytes": 224301,
+    "width": 480,
+    "height": 360,
+    "luminance_min": 0,
+    "luminance_max": 191,
+    "luminance_mean": 60.851,
+    "luminance_stddev": 65.222,
+    "sha256": "20a978c293b9a491f5c4863b940027665f80f4d5ecd70e465568be189d4f317a"
+  },
+  "movie": {
+    "path": "output/cloth-hammock-rigidbody-drop-eevee.mp4",
+    "size_bytes": 156795,
+    "width": 480,
+    "height": 360,
+    "duration_seconds": 8.0,
+    "avg_frame_rate": "24/1",
+    "nb_frames": "192",
+    "sha256": "fc902f8a4752f0e2dcaf191dd0df64736a23863532b2f9780e6ef8867e47cf25"
+  },
+  "report": {
+    "engine": "BLENDER_EEVEE",
+    "vertex_count": 1575,
+    "face_count": 1496,
+    "pinned_vertex_count": 36,
+    "baked_shape_keys": 192,
+    "shape_key_count": 193,
+    "simulation_seconds": 15.932,
+    "rigid_body_count": 12,
+    "rigid_body_bake_seconds": 0.122,
+    "rigid_body_proxy": "RigidHammockProxy",
+    "effectors": [
+      "CrossWind",
+      "Turbulence"
+    ],
+    "blend_size_bytes": 7609332
+  }
+}
