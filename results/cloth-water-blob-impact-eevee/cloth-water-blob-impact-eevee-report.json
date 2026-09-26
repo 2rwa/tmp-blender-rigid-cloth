@@ -28,12 +28,12 @@
     "face_count": 576,
     "baked_shape_keys": 192,
     "shape_key_count": 193,
-    "simulation_seconds": 10.803,
-    "max_displacement": 1.602471,
+    "simulation_seconds": 11.427,
+    "max_displacement": 1.602084,
     "max_displacement_frame": 64,
-    "initial_center_top_z": 0.75,
-    "center_top_z_at_peak": -0.696784,
-    "center_top_drop": 1.446784
+    "initial_center_top_z": 1.63,
+    "center_top_z_at_peak": 0.182954,
+    "center_top_drop": 1.447046
   },
   "cloth": {
     "name": "WaterDropCloth",
@@ -44,17 +44,17 @@
     "self_collision": true,
     "baked_shape_keys": 192,
     "shape_key_count": 193,
-    "simulation_seconds": 16.919,
-    "max_displacement": 3.532223,
-    "max_displacement_frame": 184,
+    "simulation_seconds": 15.062,
+    "max_displacement": 3.538263,
+    "max_displacement_frame": 192,
     "min_vertex_z": 0.034998,
     "min_vertex_z_frame": 177,
-    "first_live_blob_contact_frame": null
+    "first_live_blob_contact_frame": 23
   },
   "interaction": {
     "coverage_at_blob_peak": 0.979724,
-    "center_gap_at_blob_peak": 2.144705,
-    "min_abs_center_gap": 1.254365,
+    "center_gap_at_blob_peak": 1.264967,
+    "min_abs_center_gap": 0.374365,
     "min_abs_center_gap_frame": 26
   },
   "proxy": {
