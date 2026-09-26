@@ -1,0 +1,36 @@
+{
+  "video": "cloth-water-blob-impact-v3-eevee.mp4",
+  "preview": {
+    "path": "output/preview.png",
+    "size_bytes": 182958,
+    "width": 480,
+    "height": 360,
+    "luminance_min": 0,
+    "luminance_max": 222,
+    "luminance_mean": 45.769,
+    "luminance_stddev": 54.17,
+    "sha256": "024783066bf3df701e5198eb6c11790dc7d751d2bdf4c4fdb039955dbe4dd343"
+  },
+  "movie": {
+    "path": "output/cloth-water-blob-impact-v3-eevee.mp4",
+    "size_bytes": 46455,
+    "width": 480,
+    "height": 360,
+    "duration_seconds": 8.0,
+    "avg_frame_rate": "24/1",
+    "nb_frames": "192",
+    "sha256": "a5c4cc83da7b599d9b8eb985fb4379e2aa64f6f526a2f16bb1d56fcb4a50da2f"
+  },
+  "report": {
+    "engine": "BLENDER_EEVEE",
+    "blob_max_displacement": 1.602084,
+    "blob_peak_frame": 64,
+    "v2_peak_gap": 0.059224,
+    "v3_peak_gap": 0.054504,
+    "v3_min_gap_after_contact": 0.022391,
+    "v3_max_gap_after_contact": 0.265121,
+    "v3_coverage_at_blob_peak": 0.762212,
+    "final_cloth_simulation_seconds": 13.567,
+    "blend_size_bytes": 7871480
+  }
+}
