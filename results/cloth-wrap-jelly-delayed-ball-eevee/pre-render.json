@@ -1,0 +1,20 @@
+{
+  "experiment": "cloth-wrap-jelly-delayed-ball-eevee",
+  "source_sha": "f55c3fbc6c038101ef5c61d61c0e4503d852996b",
+  "run_id": "36248780462",
+  "run_number": "4",
+  "render_mode": "frame-sequence",
+  "frame_sequence": {
+    "start": 1,
+    "end": 192,
+    "fps": 24,
+    "chunk_size": 24,
+    "preview_frame": 74,
+    "blend": "cloth-wrap-jelly-delayed-ball-eevee.blend",
+    "video": "cloth-wrap-jelly-delayed-ball-eevee.mp4"
+  },
+  "published_prepared_outputs": [
+    "cloth-wrap-jelly-delayed-ball-eevee.blend",
+    "cloth-wrap-jelly-delayed-ball-eevee-report.json"
+  ]
+}

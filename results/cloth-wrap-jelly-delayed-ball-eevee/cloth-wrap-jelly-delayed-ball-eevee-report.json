@@ -1,0 +1,84 @@
+{
+  "experiment": "cloth-wrap-jelly-delayed-ball-eevee",
+  "engine": "BLENDER_EEVEE",
+  "frame_start": 1,
+  "frame_end": 192,
+  "fps": 24,
+  "resolution_x": 480,
+  "resolution_y": 360,
+  "effective_render_samples": 16,
+  "coupling": {
+    "mode": "two-pass one-way coupling",
+    "pass_1": "delayed rigid ball -> soft-body jelly",
+    "pass_2": "baked jelly + baked ball -> grippy cloth",
+    "cloth_reads_jelly_collision": true,
+    "jelly_reads_cloth_collision": false,
+    "ball_feels_cloth": false,
+    "intent": "keep cloth on jelly long enough for ball to press cloth into deformed jelly"
+  },
+  "jelly": {
+    "name": "JellyCube",
+    "vertex_count": 866,
+    "face_count": 864,
+    "baked_shape_keys": 192,
+    "shape_key_count": 193,
+    "simulation_seconds": 1.874,
+    "max_displacement": 1.591789,
+    "max_displacement_frame": 75,
+    "cloth_friction": 28.0
+  },
+  "cloth": {
+    "name": "DropCloth",
+    "grid_x": 35,
+    "grid_y": 31,
+    "width": 3.5,
+    "depth": 3.0,
+    "start_z": 3.45,
+    "vertex_count": 1085,
+    "face_count": 1020,
+    "self_collision": true,
+    "baked_shape_keys": 192,
+    "shape_key_count": 193,
+    "simulation_seconds": 23.303,
+    "max_displacement": 1.541161,
+    "max_displacement_frame": 82,
+    "min_vertex_z": 1.914635,
+    "min_vertex_z_frame": 82,
+    "release_probe_frame": 48,
+    "impact_probe_frame": 71,
+    "coverage_at_release": 0.906912,
+    "coverage_at_impact": 0.970507,
+    "center_mean_z_at_release": 2.627247,
+    "center_mean_z_at_impact": 2.271256,
+    "center_press_depth": 0.355991,
+    "center_vertices_at_release": 132,
+    "center_vertices_at_impact": 152
+  },
+  "ball": {
+    "name": "DropBall_00",
+    "radius": 0.5,
+    "mass": 2.5999999046325684,
+    "release_frame": 49,
+    "release_seconds": 2.0,
+    "start_location": [
+      0.0,
+      0.0,
+      6.8
+    ],
+    "final_location": [
+      0.0,
+      0.0,
+      2.56
+    ],
+    "min_center_z_in_proxy_footprint": 2.56,
+    "min_center_z_frame": 71,
+    "possible_proxy_tunneling": false
+  },
+  "rigid_body": {
+    "proxy": "JellyRigidProxy",
+    "world_substeps_per_frame": 10,
+    "world_solver_iterations": 35,
+    "bake_seconds": 0.008
+  },
+  "blend": "cloth-wrap-jelly-delayed-ball-eevee.blend"
+}
