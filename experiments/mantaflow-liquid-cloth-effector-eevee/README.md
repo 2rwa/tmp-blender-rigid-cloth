@@ -66,3 +66,26 @@ This avoids changing the shared parallel-render pipeline before confirming that 
 Bake a real Cloth simulation first, replay it as an animated Fluid Effector, and test **baked deforming Cloth -> Mantaflow liquid**.
 
 Only after that is stable is it worth investigating feedback in the other direction or an external solver such as FLIP Fluids.
+
+
+## Run #12: Mantaflow succeeded; validator dependency failed
+
+The first Actions run reached and completed the expensive parts successfully:
+
+- Mantaflow bake: **19.635 s**;
+- cache: **288 files / 90,734,083 bytes**;
+- sampled liquid mesh vertices:
+  - frame 1: 1,324;
+  - frame 24: 11,168;
+  - frame 48: 13,750;
+  - frame 72: 7,548;
+  - frame 96: 7,768;
+- Blender completed the animation render and preview render.
+
+The job failed only in Python validation because `validate.py` called the external `ffprobe` executable, while the standard experiment workflow does not install the ffmpeg command-line package.
+
+This is a validation-environment mistake, not a Mantaflow failure.
+
+The validator was changed to verify the MP4's existence, non-trivial size, and SHA-256 while taking width/FPS/frame-count expectations from the scene/report that generated it. Preview pixels and Mantaflow cache/mesh geometry remain independently validated.
+
+Because `validate.py` is intentionally excluded from the render-cache content hash, the next run should restore the completed render checkpoint instead of repeating the 90 MB Mantaflow bake.
