@@ -1,0 +1,39 @@
+{
+  "video": "mantaflow-liquid-cloth-effector-eevee.mp4",
+  "preview": {
+    "size_bytes": 191190,
+    "width": 480,
+    "height": 360,
+    "luminance_min": 0,
+    "luminance_max": 241,
+    "luminance_mean": 50.318,
+    "luminance_stddev": 63.797,
+    "sha256": "92346f3bad98777750c04d8e30b80fc814771f5a12cd05889c4eb34ca16912bd"
+  },
+  "movie": {
+    "size_bytes": 571150,
+    "expected_width": 480,
+    "expected_height": 360,
+    "expected_duration_seconds": 4.0,
+    "expected_fps": 24,
+    "expected_frames": 96,
+    "sha256": "cce652146ea020ff67d8f6ca8f9d74cc9c54aea1529edb3c5f23037ffea11638"
+  },
+  "report": {
+    "fluid_solver": "Mantaflow liquid / FLIP",
+    "bake_seconds": 19.635,
+    "cache_file_count": 288,
+    "cache_bytes": 90734083,
+    "sample_vertex_counts": {
+      "1": 1324,
+      "24": 11168,
+      "48": 13750,
+      "72": 7548,
+      "96": 7768
+    },
+    "max_lateral_span": 4.975287,
+    "min_fluid_z": 0.06646,
+    "cloth_vertex_count": 1435
+  },
+  "blend_size_bytes": 1008864
+}
