@@ -1,0 +1,12 @@
+{
+  "id": "mantaflow-liquid-cloth-effector-eevee",
+  "title": "Mantaflow Liquid + Cloth Effector EEVEE",
+  "description": "Minimal true-liquid baseline: Blender 4.0.2 Mantaflow/FLIP liquid falls onto a red Cloth-shaped planar Fluid Effector. The Cloth is static in this first test; coupling is explicitly one-way from Cloth obstacle geometry into the liquid solve.",
+  "preview_source": "preview.png",
+  "required_outputs": [
+    "preview.png",
+    "mantaflow-liquid-cloth-effector-eevee.mp4",
+    "mantaflow-liquid-cloth-effector-eevee.blend",
+    "mantaflow-liquid-cloth-effector-eevee-report.json"
+  ]
+}
