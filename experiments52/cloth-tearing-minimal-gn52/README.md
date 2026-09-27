@@ -52,3 +52,28 @@ Connected-component counts are also recorded, but a partial tear does not have t
 ## Next
 
 If this succeeds, the next experiment can introduce a moving closed collider through the cloth. After that, a baked torn cloth can become a Mantaflow effector so liquid can escape through the opening.
+
+
+## Run #1: Blender 5.2 runtime and asset load succeeded
+
+The first dedicated Actions run established several useful facts before failing:
+
+- Blender **5.2.2 LTS** downloaded, checksum-verified, cached, and launched headlessly under Xvfb.
+- The bundled **Cloth Dynamics (Experimental)** Essentials asset was found and added successfully.
+- Failure occurred only when setting modifier inputs.
+
+Exact cause: Blender 5.2 changed the Python API for Geometry Nodes modifier inputs. The old pre-5.2 custom-ID-property form such as:
+
+`modifier["Socket_1"] = value`
+
+now raises:
+
+`TypeError: id properties not supported for this type`
+
+Blender 5.2 requires:
+
+`modifier.properties.inputs.<identifier>.value = value`
+
+and field attributes use `.type = "ATTRIBUTE"` plus `.attribute_name`.
+
+The experiment now uses the 5.2 RNA API for Pin Group, Tearing, Threshold, solver settings, and Gravity.

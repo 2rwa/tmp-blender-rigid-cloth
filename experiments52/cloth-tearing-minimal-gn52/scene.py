@@ -208,6 +208,17 @@ def add_cloth_dynamics(obj):
     def matching(name):
         return [item for item in inputs if item["name"].strip().lower() == name.lower()]
 
+    def runtime_input(item):
+        props = modifier.properties
+        if props is None:
+            raise RuntimeError("Geometry Nodes modifier has no runtime properties")
+        try:
+            return getattr(props.inputs, item["identifier"])
+        except AttributeError as exc:
+            raise RuntimeError(
+                f"runtime input missing for {item['name']} / {item['identifier']}"
+            ) from exc
+
     def set_scalar(name, value, socket_hint=None):
         matches = matching(name)
         if socket_hint:
@@ -218,17 +229,20 @@ def add_cloth_dynamics(obj):
         if not matches:
             return False
         item = matches[0]
-        modifier[item["identifier"]] = value
+        prop = runtime_input(item)
+        prop.value = value
         applied[f"{name}:{item['identifier']}"] = value
         return True
 
-    # Pin the top row via the vertex-group field input.
+    # Blender 5.2 moved Geometry Nodes modifier inputs from ID properties
+    # to proper RNA objects under modifier.properties.inputs.
     pins = matching("Pin Group")
     if not pins:
         raise RuntimeError(f"Pin Group input missing: {inputs}")
     pin = pins[0]
-    modifier[pin["identifier"] + "_use_attribute"] = True
-    modifier[pin["identifier"] + "_attribute_name"] = "PinnedTop"
+    pin_prop = runtime_input(pin)
+    pin_prop.type = "ATTRIBUTE"
+    pin_prop.attribute_name = "PinnedTop"
     applied[f"Pin Group:{pin['identifier']}"] = "attribute:PinnedTop"
 
     # Conservative solver settings, but intentionally tear-friendly material.
@@ -253,10 +267,10 @@ def add_cloth_dynamics(obj):
     for item in gravity_matches:
         st = str(item["socket_type"])
         if "Vector" in st:
-            modifier[item["identifier"]] = (0.0, 0.0, -32.0)
+            runtime_input(item).value = (0.0, 0.0, -32.0)
             applied[f"Gravity:{item['identifier']}"] = [0.0, 0.0, -32.0]
         elif "Bool" in st:
-            modifier[item["identifier"]] = True
+            runtime_input(item).value = True
             applied[f"Gravity:{item['identifier']}"] = True
 
     try:
