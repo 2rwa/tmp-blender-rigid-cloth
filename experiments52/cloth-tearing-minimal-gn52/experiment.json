@@ -1,0 +1,5 @@
+{
+  "id": "cloth-tearing-minimal-gn52",
+  "title": "Blender 5.2 Cloth Dynamics Minimal Tearing",
+  "description": "Experimental Blender 5.2.2 Geometry Nodes Cloth Dynamics / XPBD tearing test. A top-pinned hanging cloth is pulled by strong gravity and validated by actual topology changes."
+}
