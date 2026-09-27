@@ -77,3 +77,31 @@ Blender 5.2 requires:
 and field attributes use `.type = "ATTRIBUTE"` plus `.attribute_name`.
 
 The experiment now uses the 5.2 RNA API for Pin Group, Tearing, Threshold, solver settings, and Gravity.
+
+
+## Run #2: interface discovery reached the actual 5.2 asset sockets
+
+The second run got through the Blender 5.2 RNA modifier API and exposed the complete Cloth Dynamics interface.
+
+Important 5.2.2 socket names include:
+
+- `Pin Group`
+- `Stretchiness`
+- `Bendiness`
+- `Substeps`
+- `Constraint Steps`
+- `Mass`
+- `Friction`
+- `Collision Radius`
+- `Linear Damping`
+- `Gravity` (boolean)
+- `Gravity` (vector)
+- `Tearing`
+- `Tearing Mode`
+- `Tearing Edge Group`
+- `Tearing Threshold`
+- `Tearing Voronoi Scale`
+
+The run failed because the first script looked for a generic `Threshold` socket and therefore deliberately aborted rather than silently using a default.
+
+The implementation now targets the exact 5.2.2 names (`Constraint Steps`, `Linear Damping`, and `Tearing Threshold`). The default tearing mode is left unchanged for this first all-edges test.

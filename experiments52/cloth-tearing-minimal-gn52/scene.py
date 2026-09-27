@@ -247,11 +247,11 @@ def add_cloth_dynamics(obj):
 
     # Conservative solver settings, but intentionally tear-friendly material.
     set_scalar("Substeps", 8)
-    set_scalar("Constraint Iterations", 24)
+    set_scalar("Constraint Steps", 24)
     set_scalar("Stretchiness", 0.08)
     set_scalar("Bendiness", 0.22)
     set_scalar("Mass", 1.0)
-    set_scalar("Linear", 0.035)
+    set_scalar("Linear Damping", 0.035)
 
     if not set_scalar("Tearing", True, "Bool"):
         # Some asset revisions expose the panel toggle as a generic boolean
@@ -259,7 +259,7 @@ def add_cloth_dynamics(obj):
         if not set_scalar("Tearing", True):
             raise RuntimeError(f"Tearing input missing: {inputs}")
 
-    if not set_scalar("Threshold", 1.012):
+    if not set_scalar("Tearing Threshold", 1.012):
         raise RuntimeError(f"Tearing Threshold input missing: {inputs}")
 
     # Strong gravity makes the hanging curtain exceed the low tearing strain.
