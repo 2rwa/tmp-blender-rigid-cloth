@@ -1,0 +1,12 @@
+{
+  "id": "mantaflow-liquid-baked-cloth-effector-eevee",
+  "title": "Mantaflow Liquid + Baked Deforming Cloth Effector EEVEE",
+  "description": "A real Cloth simulation is baked to shape keys first, then replayed as an animated planar Mantaflow Fluid Effector while true FLIP liquid falls onto it. Coupling remains deliberately one-way from the deforming Cloth into the liquid solve.",
+  "preview_source": "preview.png",
+  "required_outputs": [
+    "preview.png",
+    "mantaflow-liquid-baked-cloth-effector-eevee.mp4",
+    "mantaflow-liquid-baked-cloth-effector-eevee.blend",
+    "mantaflow-liquid-baked-cloth-effector-eevee-report.json"
+  ]
+}
