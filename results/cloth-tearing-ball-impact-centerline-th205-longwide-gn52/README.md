@@ -1,0 +1,34 @@
+# Ball Impact Tearing — Centerline 2.05 Long Wide
+
+Long-view 144-frame centerline calibration at threshold 2.05.
+
+- source commit: `a29c215dff6b583e39bb58439cacff79a00d6bdb`
+- Actions run: `9` (`36472219772`)
+- Blender line: **5.2 experimental Cloth Dynamics / Tearing**
+
+![Latest preview](./preview.jpg)
+
+## Validation
+
+```json
+{
+  "experiment": "cloth-tearing-ball-impact-centerline-th205-longwide-gn52",
+  "pattern": "centerline",
+  "blender_version": "5.2.2 LTS",
+  "impact_frame": 28,
+  "frame_end": 144,
+  "duration_seconds": 6.0,
+  "tear_observed": true,
+  "first_tear_frame": 2,
+  "tear_after_planned_contact": false,
+  "base_vertices": 1575,
+  "max_vertices": 1576,
+  "max_components": 1,
+  "tear_edge_count": 310,
+  "custom_mode_applied": true,
+  "preview_frame": 31,
+  "preview_sha256": "be3f84ce1f454fb8ad3ca899517002afa314f0dbb9f70ba19f051ee06036b969",
+  "video_size_bytes": 66001,
+  "blend_size_bytes": 320773
+}
+```
