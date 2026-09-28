@@ -219,27 +219,29 @@ jobs:
           title = manifest.get("title", exp)
           desc = manifest.get("description", "")
           validation = json.loads((src / "validation.json").read_text(encoding="utf-8"))
-          readme = f"""# {title}
-
-{desc}
-
-- source commit: `{os.environ["SOURCE_COMMIT"]}`
-- Actions run: `{os.environ["RUN_NUMBER"]}` (`{os.environ["RUN_ID"]}`)
-- Blender line: **5.2 experimental Cloth Dynamics / Tearing**
-
-![Latest preview](./preview.jpg)
-
-## Validation
-
-```json
-{json.dumps(validation, indent=2)}
-```
-
-## License / ライセンス
-
-Unless otherwise noted, generated assets in this result are CC0-1.0.
-Source code and workflow files used to generate them are MIT-0.
-"""
+          readme = "\n".join([
+              f"# {title}",
+              "",
+              desc,
+              "",
+              f"- source commit: \`{os.environ['SOURCE_COMMIT']}\`",
+              f"- Actions run: \`{os.environ['RUN_NUMBER']}\` (\`{os.environ['RUN_ID']}\`)",
+              "- Blender line: **5.2 experimental Cloth Dynamics / Tearing**",
+              "",
+              "![Latest preview](./preview.jpg)",
+              "",
+              "## Validation",
+              "",
+              "\`\`\`json",
+              json.dumps(validation, indent=2),
+              "\`\`\`",
+              "",
+              "## License / ライセンス",
+              "",
+              "Unless otherwise noted, generated assets in this result are CC0-1.0.",
+              "Source code and workflow files used to generate them are MIT-0.",
+              "",
+          ])
           (dst / "README.md").write_text(readme, encoding="utf-8")
           PY
 

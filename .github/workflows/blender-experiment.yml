@@ -8,6 +8,7 @@ on:
       - 'docs/**'
       - 'tools/build_pages.py'
       - '.github/workflows/pages-gallery.yml'
+      - '.github/workflows/blender52-tearing.yml'
       - 'index.html'
       - '.nojekyll'
   workflow_dispatch:
