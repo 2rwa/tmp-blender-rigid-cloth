@@ -70,7 +70,7 @@ jobs:
     needs: discover
     if: needs.discover.outputs.standard_experiments != '[]'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 120
     strategy:
       fail-fast: false
       matrix:
@@ -243,7 +243,7 @@ jobs:
     needs: discover
     if: needs.discover.outputs.movie_experiments != '[]'
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120
     strategy:
       fail-fast: false
       matrix:
@@ -375,7 +375,7 @@ jobs:
     needs: [discover, prepare_movie]
     if: needs.discover.outputs.movie_chunks != '[]'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 120
     strategy:
       fail-fast: false
       max-parallel: 4
@@ -464,7 +464,7 @@ jobs:
     needs: [discover, prepare_movie, render_movie_chunks]
     if: needs.discover.outputs.movie_experiments != '[]'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 120
     strategy:
       fail-fast: false
       matrix:

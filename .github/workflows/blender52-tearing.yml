@@ -26,7 +26,7 @@ concurrency:
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 120
     env:
       EXPERIMENT: ${{ github.event_name == 'workflow_dispatch' && inputs.experiment || 'cloth-tearing-minimal-gn52' }}
       BLENDER_VERSION: "5.2.2"

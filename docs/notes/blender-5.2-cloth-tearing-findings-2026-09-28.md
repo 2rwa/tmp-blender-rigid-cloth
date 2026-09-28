@@ -281,3 +281,31 @@ Validation then failed only because the .blend was **288,366 bytes**, below an a
 For Geometry Nodes asset-driven scenes, .blend size can be small even when the simulation/render outputs are valid. File size is therefore only a corruption sanity check, not a semantic success criterion.
 
 The minimum .blend size was reduced to 150 KB. Tearing remains validated from per-frame evaluated topology.
+
+
+## Actions timeout policy (2026-09-28)
+
+Long-running Blender simulation and render jobs now use a **120-minute timeout** by default.
+
+Earlier experiments intentionally used shorter limits (15–60 minutes) because long-running jobs were harder to recover from reliably: when a conversation ended or a run outlived the observation window, results could be difficult to pick up and publish.
+
+That constraint has changed. The current workflow now has:
+
+- persistent render checkpoints;
+- Actions artifacts;
+- result publication into `results/`;
+- Pages regeneration/deployment;
+- reusable Blender runtime caches;
+- run/job IDs recorded for later inspection.
+
+Because completed output can now be recovered independently of the conversation, cutting expensive physics/render experiments off early is more harmful than letting them finish.
+
+Policy:
+
+- simulation / rendering / heavy assembly jobs: **120 minutes**;
+- publish / Pages / lightweight bookkeeping jobs: keep short limits (normally 5–10 minutes);
+- after dispatch, the chat should only observe the run briefly (about 30 seconds) for immediate failure, then return control while Actions continues;
+- a 120-minute timeout is an upper bound, not a target duration;
+- failures and timeouts remain useful experimental results and should be recorded rather than hidden.
+
+This policy applies to the Blender 4.0.2 and Blender 5.2 experiment lines in this repository.
