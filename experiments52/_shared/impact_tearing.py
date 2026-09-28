@@ -146,17 +146,17 @@ def add_collider(ball,cfg):
 
 def add_ball(cfg,effectors):
     r=cfg.get("ball_radius",.34); start=tuple(cfg["ball_start"]); impact=tuple(cfg["ball_impact"]); end=tuple(cfg["ball_end"])
-    impact_frame=int(cfg.get("impact_frame",28)); end_frame=int(cfg.get("end_frame",44))
+    impact_frame=int(cfg.get("impact_frame",28)); end_frame=int(cfg.get("end_frame",44)); render_end=int(cfg.get("render_end_frame",FRAME_END))
     bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=3,radius=r,location=start)
     ball=bpy.context.object; ball.name="ImpactBall"; ball.data.materials.append(material("ImpactBallMaterial",tuple(cfg.get("ball_color",(0.05,0.28,0.86,1))),.24,.15))
     effectors.objects.link(ball)
-    for frame,loc in ((1,start),(impact_frame,impact),(end_frame,end),(FRAME_END,end)):
+    for frame,loc in ((1,start),(impact_frame,impact),(end_frame,end),(render_end,end)):
         ball.location=loc; ball.keyframe_insert(data_path="location",frame=frame)
     try:
         for curve in ball.animation_data.action.fcurves:
             for key in curve.keyframe_points: key.interpolation="LINEAR"
     except Exception: pass
-    return ball,{"radius":r,"start":start,"impact":impact,"end":end,"impact_frame":impact_frame,"end_frame":end_frame,"collider":add_collider(ball,cfg)}
+    return ball,{"radius":r,"start":start,"impact":impact,"end":end,"impact_frame":impact_frame,"end_frame":end_frame,"render_end_frame":render_end,"collider":add_collider(ball,cfg)}
 
 def add_cloth_dynamics(obj,effectors,cfg):
     mod,source,errors=add_asset_modifier(obj,"Cloth Dynamics (Experimental)")
@@ -181,11 +181,15 @@ def add_cloth_dynamics(obj,effectors,cfg):
 def setup_stage(scene,cfg):
     if cfg["pattern"]=="hammock":
         bpy.ops.mesh.primitive_cube_add(location=(0,0,.08),scale=(2.6,2.1,.08)); bpy.context.object.data.materials.append(material("Floor",(0.04,.05,.065,1),.82))
-        bpy.ops.object.camera_add(location=(5.6,-6.5,4.8)); scene.camera=bpy.context.object; scene.camera.data.lens=52; look_at(scene.camera,(0,0,1.95))
+        camera_location=tuple(cfg.get("camera_location",(5.6,-6.5,4.8)))
+        camera_target=tuple(cfg.get("camera_target",(0,0,1.95)))
+        bpy.ops.object.camera_add(location=camera_location); scene.camera=bpy.context.object; scene.camera.data.lens=cfg.get("camera_lens",52); look_at(scene.camera,camera_target)
     else:
         bpy.ops.mesh.primitive_cube_add(location=(0,.58,2.05),scale=(2.55,.07,2.05)); bpy.context.object.data.materials.append(material("Backdrop",(0.04,.05,.07,1),.82))
         bpy.ops.mesh.primitive_cube_add(location=(0,0,3.72),scale=(2.25,.10,.10)); bpy.context.object.data.materials.append(material("Support",(0.13,.14,.16,1),.38))
-        bpy.ops.object.camera_add(location=(0,-7.4,2.25)); scene.camera=bpy.context.object; scene.camera.data.lens=54; look_at(scene.camera,(0,0,2.15))
+        camera_location=tuple(cfg.get("camera_location",(0,-7.4,2.25)))
+        camera_target=tuple(cfg.get("camera_target",(0,0,2.15)))
+        bpy.ops.object.camera_add(location=camera_location); scene.camera=bpy.context.object; scene.camera.data.lens=cfg.get("camera_lens",54); look_at(scene.camera,camera_target)
     bpy.ops.object.light_add(type="AREA",location=(-3.5,-3,5.7)); key=bpy.context.object; key.data.energy=950; key.data.size=4; look_at(key,(0,0,2))
     bpy.ops.object.light_add(type="AREA",location=(3.2,-1.5,3.2)); fill=bpy.context.object; fill.data.energy=520; fill.data.size=3; look_at(fill,(0,0,2))
 
@@ -210,21 +214,22 @@ def run(cfg):
     OUT.mkdir(parents=True,exist_ok=True)
     if FRAMES.exists(): shutil.rmtree(FRAMES)
     FRAMES.mkdir(parents=True); clear_scene()
-    scene=bpy.context.scene; scene.frame_start=1; scene.frame_end=72; scene.render.fps=24; scene.render.resolution_x=480; scene.render.resolution_y=360; scene.render.resolution_percentage=100; scene.render.image_settings.file_format="PNG"
+    render_end=int(cfg.get("render_end_frame",FRAME_END))
+    scene=bpy.context.scene; scene.frame_start=FRAME_START; scene.frame_end=render_end; scene.render.fps=FPS; scene.render.resolution_x=RES_X; scene.render.resolution_y=RES_Y; scene.render.resolution_percentage=100; scene.render.image_settings.file_format="PNG"
     engine=choose_engine(scene); scene.world.use_nodes=True; bg=scene.world.node_tree.nodes.get("Background"); bg.inputs["Color"].default_value=(.006,.008,.014,1); bg.inputs["Strength"].default_value=.16
     setup_stage(scene,cfg); effectors=bpy.data.collections.new("ImpactEffectors"); scene.collection.children.link(effectors)
     cloth,cloth_info=make_cloth(cfg); ball,ball_info=add_ball(cfg,effectors); asset_info=add_cloth_dynamics(cloth,effectors,cfg)
     bpy.context.view_layer.update(); deps=bpy.context.evaluated_depsgraph_get()
     base={"vertices":len(cloth.data.vertices),"edges":len(cloth.data.edges),"faces":len(cloth.data.polygons)}
     first=None; maxv=base["vertices"]; maxc=1; samples=[]
-    for frame in range(1,73):
+    for frame in range(FRAME_START,render_end+1):
         scene.frame_set(frame); deps.update(); s=eval_topology(cloth,deps); s["frame"]=frame; s["ball_location"]=list(ball.matrix_world.translation); samples.append(s)
         maxv=max(maxv,s["vertices"]); maxc=max(maxc,s["components"])
         changed=s["vertices"]!=base["vertices"] or s["edges"]!=base["edges"] or s["faces"]!=base["faces"]
         if first is None and changed: first=frame; print(f"IMPACT_TEAR_FIRST={frame} vertices={s['vertices']} edges={s['edges']} components={s['components']}")
         if frame%6==0 or frame in (1,ball_info["impact_frame"]): print(f"IMPACT_TEAR_FRAME={frame} vertices={s['vertices']} components={s['components']} ball={tuple(round(v,3) for v in ball.matrix_world.translation)}")
         scene.render.filepath=str(FRAMES/f"frame_{frame:04d}.png"); bpy.ops.render.render(write_still=True)
-    preview=min(72,max(ball_info["impact_frame"]+3,(first+4) if first else ball_info["impact_frame"]+8)); shutil.copy2(FRAMES/f"frame_{preview:04d}.png",OUT/"preview.png")
-    exp=cfg["experiment"]; report={"experiment":exp,"pattern":cfg["pattern"],"blender_version":bpy.app.version_string,"engine":engine,"frame_start":1,"frame_end":72,"fps":24,"resolution":[480,360],"solver":"Geometry Nodes Cloth Dynamics / XPBD","experimental":True,"coupling":"prescribed closed collider ball -> Cloth Dynamics","cloth":{**cloth_info,"base_topology":base},"ball":ball_info,"asset":asset_info,"tearing":{"enabled":True,"threshold_requested":cfg.get("threshold",1.11),"first_tear_frame":first,"max_vertices":maxv,"max_components":maxc,"topology_changed":first is not None,"tear_after_planned_contact":first is not None and first>=ball_info["impact_frame"]-2,"preview_frame":preview},"samples":samples,"config":cfg}
+    preview=min(render_end,max(ball_info["impact_frame"]+3,(first+4) if first else ball_info["impact_frame"]+8)); shutil.copy2(FRAMES/f"frame_{preview:04d}.png",OUT/"preview.png")
+    exp=cfg["experiment"]; report={"experiment":exp,"pattern":cfg["pattern"],"blender_version":bpy.app.version_string,"engine":engine,"frame_start":FRAME_START,"frame_end":render_end,"fps":FPS,"resolution":[RES_X,RES_Y],"solver":"Geometry Nodes Cloth Dynamics / XPBD","experimental":True,"coupling":"prescribed closed collider ball -> Cloth Dynamics","cloth":{**cloth_info,"base_topology":base},"ball":ball_info,"asset":asset_info,"tearing":{"enabled":True,"threshold_requested":cfg.get("threshold",1.11),"first_tear_frame":first,"max_vertices":maxv,"max_components":maxc,"topology_changed":first is not None,"tear_after_planned_contact":first is not None and first>=ball_info["impact_frame"]-2,"preview_frame":preview},"samples":samples,"config":cfg}
     (OUT/f"{exp}-report.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8"); bpy.ops.wm.save_as_mainfile(filepath=str(OUT/f"{exp}.blend"))
     print(f"IMPACT_PATTERN={cfg['pattern']}"); print(f"IMPACT_PLANNED_FRAME={ball_info['impact_frame']}"); print(f"IMPACT_TEAR_FIRST_FRAME={first}"); print(f"IMPACT_TEAR_MAX_VERTICES={maxv}"); print(f"IMPACT_TEAR_MAX_COMPONENTS={maxc}")
