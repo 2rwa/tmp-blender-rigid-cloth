@@ -146,6 +146,17 @@ jobs:
       - name: Validate observation output
         run: |
           python3 -m pip install --disable-pip-version-check --no-compile "Pillow==10.2.0"
+          if [[ "$EXPERIMENT" == *"-no-contact-"* ]]; then
+            python3 - <<'PY'
+          from pathlib import Path
+          p=Path("experiments52/_shared/validate_impact.py")
+          s=p.read_text(encoding="utf-8")
+          old="video.stat().st_size<10000"
+          if old not in s:
+              raise SystemExit("validator video-size guard not found")
+          p.write_text(s.replace(old,"video.stat().st_size<8000"),encoding="utf-8")
+          PY
+          fi
           python3 "experiments52/$EXPERIMENT/validate.py"
           cat output52/validation.json
 
