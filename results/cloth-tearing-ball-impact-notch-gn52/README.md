@@ -2,8 +2,8 @@
 
 A hanging cloth starts with a small central notch and a narrow tear-enabled band. A sphere hits the notch region to test crack growth from a seeded defect.
 
-- source commit: `6ba74a94efe805991750ee7469091da31817a27d`
-- Actions run: `3` (`36411733508`)
+- source commit: `2e1914dc1c2f97f3ac0860ff4dd98978939eeb1e`
+- Actions run: `4` (`36411738548`)
 - Blender line: **5.2 experimental Cloth Dynamics / Tearing**
 
 ![Latest preview](./preview.jpg)
