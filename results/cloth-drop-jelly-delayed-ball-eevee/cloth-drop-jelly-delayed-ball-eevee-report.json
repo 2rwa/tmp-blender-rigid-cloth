@@ -21,7 +21,7 @@
     "face_count": 864,
     "baked_shape_keys": 192,
     "shape_key_count": 193,
-    "simulation_seconds": 1.721,
+    "simulation_seconds": 1.701,
     "max_displacement": 0.847191,
     "max_displacement_frame": 74
   },
@@ -34,7 +34,7 @@
     "self_collision": true,
     "baked_shape_keys": 192,
     "shape_key_count": 193,
-    "simulation_seconds": 13.806,
+    "simulation_seconds": 14.318,
     "max_displacement": 4.50573,
     "max_displacement_frame": 192,
     "min_vertex_z": 0.04645,
@@ -64,7 +64,7 @@
     "proxy": "JellyRigidProxy",
     "world_substeps_per_frame": 8,
     "world_solver_iterations": 30,
-    "bake_seconds": 0.008
+    "bake_seconds": 0.009
   },
   "blend": "cloth-drop-jelly-delayed-ball-eevee.blend"
 }
