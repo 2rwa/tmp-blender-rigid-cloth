@@ -11775,9 +11775,9 @@
       "sourceRoot": "experiments",
       "firstPublishEpoch": 1790430907,
       "run": {
-        "githubRunId": "36395574771",
-        "runNumber": "27",
-        "sourceCommit": "a1dece929a2f80ce1ba80b763f2561f5aef5d1c0",
+        "githubRunId": "36496376134",
+        "runNumber": "28",
+        "sourceCommit": "f5975569b40f43e23a70462a37599dc1b9b4f93f",
         "status": "success"
       },
       "config": {
@@ -11834,7 +11834,7 @@
         "report.cloth.name": "DropCloth",
         "report.cloth.self_collision": true,
         "report.cloth.shape_key_count": 193,
-        "report.cloth.simulation_seconds": 14.318,
+        "report.cloth.simulation_seconds": 10.131,
         "report.cloth.vertex_count": 1015,
         "report.coupling.ball_feels_cloth": false,
         "report.coupling.cloth_reads_jelly_collision": true,
@@ -11854,11 +11854,11 @@
         "report.jelly.max_displacement_frame": 74,
         "report.jelly.name": "JellyCube",
         "report.jelly.shape_key_count": 193,
-        "report.jelly.simulation_seconds": 1.701,
+        "report.jelly.simulation_seconds": 1.136,
         "report.jelly.vertex_count": 866,
         "report.resolution_x": 480,
         "report.resolution_y": 360,
-        "report.rigid_body.bake_seconds": 0.009,
+        "report.rigid_body.bake_seconds": 0.005,
         "report.rigid_body.proxy": "JellyRigidProxy",
         "report.rigid_body.world_solver_iterations": 30,
         "report.rigid_body.world_substeps_per_frame": 8,
@@ -11876,7 +11876,7 @@
         "validation.preview.luminance_min": 0,
         "validation.preview.luminance_stddev": 50.328,
         "validation.preview.path": "output/preview.png",
-        "validation.preview.sha256": "2cb95ead35ae82b15b81dc845cc442c229c591d6fd07c2d7083c8d790eb5b8f3",
+        "validation.preview.sha256": "a8c67bfdb3bb3027cdc7f84cf59dec05c504bec0dbd72ceb90689e8b49522b96",
         "validation.preview.size_bytes": 175471,
         "validation.preview.width": 480,
         "validation.report.ball_final_location": [
@@ -11912,7 +11912,7 @@
           "kind": "blend",
           "path": "results/cloth-drop-jelly-delayed-ball-eevee/cloth-drop-jelly-delayed-ball-eevee.blend",
           "size_bytes": 5981788,
-          "sha256": "a47dbde1555dcfb2f300f5d6a73d51668ad16a4359db04f545af268b4700834d"
+          "sha256": "c7a97d059ace9566ccf57db2b90e4cd9d223fa3a0fe9f0bf7d7383a593f8d5d5"
         },
         {
           "kind": "preview",
@@ -11924,13 +11924,13 @@
           "kind": "report",
           "path": "results/cloth-drop-jelly-delayed-ball-eevee/cloth-drop-jelly-delayed-ball-eevee-report.json",
           "size_bytes": 1710,
-          "sha256": "b866030fed819fdda420e634ed9381460b70cad48e177c701f65d753229a83da"
+          "sha256": "6b9954bd0deb8f8a976153b45647c859af0e66c69093c26dd4fc76fc925f9a41"
         },
         {
           "kind": "validation",
           "path": "results/cloth-drop-jelly-delayed-ball-eevee/validation.json",
           "size_bytes": 1282,
-          "sha256": "6e261d2a227fbecbc35daf927779f420b5ed9c7ff9948eecd1b87b1e9db5a30d"
+          "sha256": "9f81acb2f3d134255b4e671849acc3969a87fa149ac9f98b9e0fe19dd9fb3d66"
         },
         {
           "kind": "video",
@@ -11942,8 +11942,8 @@
       "links": {
         "source": "https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments/cloth-drop-jelly-delayed-ball-eevee",
         "result": "https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-drop-jelly-delayed-ball-eevee",
-        "actions": "https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36395574771",
-        "commit": "https://github.com/2rwa/tmp-blender-rigid-cloth/commit/a1dece929a2f80ce1ba80b763f2561f5aef5d1c0"
+        "actions": "https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36496376134",
+        "commit": "https://github.com/2rwa/tmp-blender-rigid-cloth/commit/f5975569b40f43e23a70462a37599dc1b9b4f93f"
       }
     },
     {
