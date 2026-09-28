@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'experiments52/**'
+      - 'experiments52/cloth-tearing-minimal-gn52/**'
       - '.github/workflows/blender52-tearing.yml'
   workflow_dispatch:
     inputs:

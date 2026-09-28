@@ -1,0 +1,5 @@
+{
+  "id": "cloth-tearing-ball-impact-local-zone-gn52",
+  "title": "Ball Impact Tearing — Local Zone",
+  "description": "A smaller faster sphere strikes the center of a hanging cloth. Tearing is allowed only in a compact circular impact zone to test puncture-like local failure."
+}

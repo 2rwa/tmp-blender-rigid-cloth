@@ -1,0 +1,292 @@
+name: Blender 5.2 impact tearing batch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'experiments52/_shared/**'
+      - 'experiments52/cloth-tearing-ball-impact-centerline-gn52/**'
+      - 'experiments52/cloth-tearing-ball-impact-local-zone-gn52/**'
+      - 'experiments52/cloth-tearing-ball-impact-notch-gn52/**'
+      - 'experiments52/cloth-tearing-ball-drop-hammock-gn52/**'
+      - 'experiments52/cloth-tearing-ball-swing-impact-gn52/**'
+      - '.github/workflows/blender52-impact-batch.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: tmp-blender-rigid-cloth-impact52-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        experiment:
+          - cloth-tearing-ball-impact-centerline-gn52
+          - cloth-tearing-ball-impact-local-zone-gn52
+          - cloth-tearing-ball-impact-notch-gn52
+          - cloth-tearing-ball-drop-hammock-gn52
+          - cloth-tearing-ball-swing-impact-gn52
+    env:
+      EXPERIMENT: ${{ matrix.experiment }}
+      BLENDER_VERSION: "5.2.2"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Cheap Python preflight
+        run: |
+          python3 -m py_compile             experiments52/_shared/impact_tearing.py             experiments52/_shared/validate_impact.py             "experiments52/$EXPERIMENT/scene.py"             "experiments52/$EXPERIMENT/validate.py"
+
+      - name: Compute render cache key
+        id: render-key
+        run: |
+          content_hash="$(
+            find "experiments52/$EXPERIMENT" "experiments52/_shared" -type f               ! -name 'README.md'               ! -name 'experiment.json'               ! -name '*.pyc'               ! -path '*/__pycache__/*'               -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1
+          )"
+          echo "key=blender52-impact-${RUNNER_OS}-${BLENDER_VERSION}-${EXPERIMENT}-${content_hash}" >> "$GITHUB_OUTPUT"
+
+      - name: Restore render checkpoint
+        id: render-cache
+        uses: actions/cache/restore@v6
+        with:
+          path: output52
+          key: ${{ steps.render-key.outputs.key }}
+
+      - name: Restore Blender 5.2 runtime cache
+        id: blender-runtime-cache
+        if: steps.render-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/restore@v6
+        with:
+          path: .cache/blender52-runtime
+          key: blender-runtime-${{ runner.os }}-x64-${{ env.BLENDER_VERSION }}-v1
+
+      - name: Build Blender 5.2 runtime cache
+        if: steps.render-cache.outputs.cache-hit != 'true' && steps.blender-runtime-cache.outputs.cache-hit != 'true'
+        run: |
+          set -euxo pipefail
+          rm -rf .cache/blender52-runtime
+          mkdir -p .cache/blender52-runtime/blender .cache/blender52-runtime/python .cache/blender52-runtime/egl .cache/blender52-runtime/apt
+          archive="blender-${BLENDER_VERSION}-linux-x64.tar.xz"
+          base_url="https://download.blender.org/release/Blender5.2"
+          aria2c -x 8 -s 8 -d /tmp -o "$archive" "$base_url/$archive"
+          curl -fsSL "$base_url/blender-${BLENDER_VERSION}.sha256" -o /tmp/blender52.sha256
+          (cd /tmp && grep "  $archive$" blender52.sha256 | sha256sum -c -)
+          tar -xf "/tmp/$archive" -C .cache/blender52-runtime/blender --strip-components=1
+          python3 -m pip install --disable-pip-version-check --no-compile --target .cache/blender52-runtime/python "Pillow==10.2.0"
+          sudo apt-get update
+          (cd .cache/blender52-runtime/apt && apt-get download libegl1)
+          dpkg-deb -x .cache/blender52-runtime/apt/libegl1_*.deb .cache/blender52-runtime/egl
+
+      - name: Configure Blender 5.2 runtime
+        if: steps.render-cache.outputs.cache-hit != 'true'
+        run: |
+          echo "$GITHUB_WORKSPACE/.cache/blender52-runtime/blender" >> "$GITHUB_PATH"
+          echo "PYTHONPATH=$GITHUB_WORKSPACE/.cache/blender52-runtime/python" >> "$GITHUB_ENV"
+          echo "LD_LIBRARY_PATH=$GITHUB_WORKSPACE/.cache/blender52-runtime/egl/usr/lib/x86_64-linux-gnu:${LD_LIBRARY_PATH:-}" >> "$GITHUB_ENV"
+
+      - name: Verify Blender 5.2 runtime
+        if: steps.render-cache.outputs.cache-hit != 'true'
+        run: |
+          LIBGL_ALWAYS_SOFTWARE=1 SDL_AUDIODRIVER=dummy             xvfb-run -a -s "-screen 0 1280x720x24"             blender --background --python-expr "import bpy; print('BLENDER52_IMPACT_OK', bpy.app.version_string)"
+
+      - name: Save Blender runtime cache
+        if: steps.render-cache.outputs.cache-hit != 'true' && steps.blender-runtime-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v6
+        with:
+          path: .cache/blender52-runtime
+          key: blender-runtime-${{ runner.os }}-x64-${{ env.BLENDER_VERSION }}-v1
+
+      - name: Simulate and render impact tearing
+        if: steps.render-cache.outputs.cache-hit != 'true'
+        run: |
+          set -o pipefail
+          rm -rf output52
+          mkdir -p output52/frames
+          blender --version | tee output52/blender-version.txt
+          LIBGL_ALWAYS_SOFTWARE=1 SDL_AUDIODRIVER=dummy             xvfb-run -a -s "-screen 0 1280x720x24"             blender --background --python "experiments52/$EXPERIMENT/scene.py"             2>&1 | tee output52/blender-scene.log
+          if grep -Fq "Traceback (most recent call last):" output52/blender-scene.log; then
+            exit 1
+          fi
+
+      - name: Build MP4
+        if: steps.render-cache.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          ffmpeg -y -framerate 24 -start_number 1             -i output52/frames/frame_%04d.png             -c:v libx264 -preset veryfast -crf 29 -pix_fmt yuv420p             "output52/$EXPERIMENT.mp4"
+
+      - name: Save render checkpoint
+        if: steps.render-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v6
+        with:
+          path: output52
+          key: ${{ steps.render-key.outputs.key }}
+
+      - name: Validate observation output
+        run: |
+          python3 -m pip install --disable-pip-version-check --no-compile "Pillow==10.2.0"
+          python3 "experiments52/$EXPERIMENT/validate.py"
+          cat output52/validation.json
+
+      - name: Upload experiment artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: blender52-${{ env.EXPERIMENT }}
+          path: output52/
+          if-no-files-found: warn
+          retention-days: 7
+          overwrite: true
+
+  publish:
+    needs: render
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        experiment:
+          - cloth-tearing-ball-impact-centerline-gn52
+          - cloth-tearing-ball-impact-local-zone-gn52
+          - cloth-tearing-ball-impact-notch-gn52
+          - cloth-tearing-ball-drop-hammock-gn52
+          - cloth-tearing-ball-swing-impact-gn52
+    env:
+      EXPERIMENT: ${{ matrix.experiment }}
+
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Download validated artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: blender52-${{ env.EXPERIMENT }}
+          path: output52
+
+      - name: Generate persistent result
+        env:
+          SOURCE_COMMIT: ${{ github.sha }}
+          RUN_NUMBER: ${{ github.run_number }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          python3 -m pip install --disable-pip-version-check --no-compile "Pillow==10.2.0"
+          python3 - <<'PY'
+          import json, os, shutil
+          from pathlib import Path
+          from PIL import Image
+          exp=os.environ["EXPERIMENT"]; src=Path("output52"); dst=Path("results")/exp
+          manifest=json.loads((Path("experiments52")/exp/"experiment.json").read_text(encoding="utf-8"))
+          validation=json.loads((src/"validation.json").read_text(encoding="utf-8"))
+          if dst.exists(): shutil.rmtree(dst)
+          dst.mkdir(parents=True)
+          with Image.open(src/"preview.png") as im:
+              im.convert("RGB").save(dst/"preview.jpg",quality=88,optimize=True)
+          for source,name in [
+              (src/"validation.json","validation.json"),
+              (src/f"{exp}.mp4","media.mp4"),
+              (src/f"{exp}.blend",f"{exp}.blend"),
+              (src/f"{exp}-report.json",f"{exp}-report.json"),
+          ]:
+              if source.is_file(): shutil.copy2(source,dst/name)
+          lines=[
+              f"# {manifest.get('title',exp)}","",manifest.get("description",""),"",
+              f"- source commit: `{os.environ['SOURCE_COMMIT']}`",
+              f"- Actions run: `{os.environ['RUN_NUMBER']}` (`{os.environ['RUN_ID']}`)",
+              "- Blender line: **5.2 experimental Cloth Dynamics / Tearing**","",
+              "![Latest preview](./preview.jpg)","","## Validation","",
+              "```json",json.dumps(validation,indent=2),"```","",
+          ]
+          (dst/"README.md").write_text("\n".join(lines),encoding="utf-8")
+          PY
+
+      - name: Commit and push result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git reset --hard origin/main
+          python3 - <<'PY'
+          import sys
+          # Result was generated before reset; restore it from artifact-backed output.
+          PY
+          # Regenerate after reset so concurrent result commits are retained.
+          python3 -m pip install --disable-pip-version-check --no-compile "Pillow==10.2.0" >/dev/null
+          python3 - <<'PY'
+          import json, os, shutil
+          from pathlib import Path
+          from PIL import Image
+          exp=os.environ["EXPERIMENT"]; src=Path("output52"); dst=Path("results")/exp
+          manifest=json.loads((Path("experiments52")/exp/"experiment.json").read_text(encoding="utf-8"))
+          validation=json.loads((src/"validation.json").read_text(encoding="utf-8"))
+          if dst.exists(): shutil.rmtree(dst)
+          dst.mkdir(parents=True)
+          with Image.open(src/"preview.png") as im: im.convert("RGB").save(dst/"preview.jpg",quality=88,optimize=True)
+          for source,name in [(src/"validation.json","validation.json"),(src/f"{exp}.mp4","media.mp4"),(src/f"{exp}.blend",f"{exp}.blend"),(src/f"{exp}-report.json",f"{exp}-report.json")]:
+              if source.is_file(): shutil.copy2(source,dst/name)
+          lines=[f"# {manifest.get('title',exp)}","",manifest.get("description",""),"",f"- source commit: `{os.environ['SOURCE_COMMIT']}`",f"- Actions run: `{os.environ['RUN_NUMBER']}` (`{os.environ['RUN_ID']}`)","- Blender line: **5.2 experimental Cloth Dynamics / Tearing**","","![Latest preview](./preview.jpg)","","## Validation","","```json",json.dumps(validation,indent=2),"```",""]
+          (dst/"README.md").write_text("\n".join(lines),encoding="utf-8")
+          PY
+          git add "results/$EXPERIMENT/"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore: publish $EXPERIMENT result [skip ci]"
+          git push origin HEAD:main
+
+  pages:
+    needs: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Build gallery
+        run: |
+          python3 -m py_compile tools/build_pages.py
+          python3 tools/build_pages.py
+      - name: Commit gallery
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .nojekyll docs/
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore: publish Pages gallery [skip ci]"
+          git push origin HEAD:main
+
+  deploy_pages:
+    needs: pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: docs
+      - id: deployment
+        uses: actions/deploy-pages@v4
