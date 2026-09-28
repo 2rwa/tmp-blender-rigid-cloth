@@ -6,6 +6,8 @@ on:
     paths-ignore:
       - 'results/**'
       - 'docs/**'
+      - 'tools/build_pages.py'
+      - '.github/workflows/pages-gallery.yml'
       - 'index.html'
       - '.nojekyll'
   workflow_dispatch:

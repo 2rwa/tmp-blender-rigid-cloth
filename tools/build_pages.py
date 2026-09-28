@@ -11,7 +11,39 @@ ROOT = Path(__file__).resolve().parents[1]
 EXPERIMENTS = ROOT / "experiments"
 RESULTS = ROOT / "results"
 DOCS = ROOT / "docs"
-GITHUB_BASE = "https://github.com/2rwa/tmp-blender"
+GITHUB_BASE = "https://github.com/2rwa/tmp-blender-rigid-cloth"
+
+
+def first_publish_epoch(result_dir: Path) -> int:
+    """Return the commit time when this result README first entered git.
+
+    Re-running an old experiment can overwrite its result README with a newer
+    Actions run id. That must not move the card to the top of the gallery.
+    The first-add commit is the stable "upload order" key.
+    """
+    readme = result_dir / "README.md"
+    if not readme.is_file():
+        return -1
+    try:
+        rel = readme.relative_to(ROOT)
+        output = subprocess.check_output(
+            [
+                "git",
+                "log",
+                "--diff-filter=A",
+                "--format=%ct",
+                "--",
+                str(rel),
+            ],
+            cwd=ROOT,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip().splitlines()
+        if output:
+            return int(output[-1])
+    except (OSError, subprocess.SubprocessError, ValueError):
+        pass
+    return -1
 
 
 def load_entries() -> list[dict]:
@@ -59,15 +91,15 @@ def load_entries() -> list[dict]:
             "source_commit": source_commit,
             "run_number": run_number,
             "run_id": run_id,
+            "first_publish_epoch": first_publish_epoch(result_dir),
             "has_media": (result_dir / "media.mp4").is_file(),
             "blend_files": blend_files,
         })
-    # GitHub Actions run ids are monotonically increasing, so they provide a
-    # stable approximation of publication/upload order. Show newest results
-    # first; entries without a run id fall back behind published entries.
+    # Sort by FIRST publication, not the most recent re-run. Otherwise
+    # re-rendering an old experiment would incorrectly move it to the top.
     entries.sort(
         key=lambda entry: (
-            int(entry["run_id"]) if str(entry.get("run_id", "")).isdigit() else -1,
+            int(entry.get("first_publish_epoch", -1)),
             entry["id"],
         ),
         reverse=True,
