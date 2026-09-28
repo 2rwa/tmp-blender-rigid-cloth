@@ -1,0 +1,18 @@
+{
+  "experiment": "cloth-tearing-ball-drop-hammock-th220-fastball-gn52",
+  "pattern": "hammock",
+  "blender_version": "5.2.2 LTS",
+  "impact_frame": 20,
+  "tear_observed": false,
+  "first_tear_frame": null,
+  "tear_after_planned_contact": false,
+  "base_vertices": 1575,
+  "max_vertices": 1575,
+  "max_components": 1,
+  "tear_edge_count": 728,
+  "custom_mode_applied": true,
+  "preview_frame": 28,
+  "preview_sha256": "45db3147d5484fb3d0420d86537be6879c00ee5361f44af40adfba29af41ff55",
+  "video_size_bytes": 33863,
+  "blend_size_bytes": 315047
+}
