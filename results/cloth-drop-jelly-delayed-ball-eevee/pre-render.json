@@ -1,8 +1,8 @@
 {
   "experiment": "cloth-drop-jelly-delayed-ball-eevee",
-  "source_sha": "69175d40b1c7a38cd2515b7045c457a922a7eedd",
-  "run_id": "36246553134",
-  "run_number": "3",
+  "source_sha": "0250616296cbd7fa498ac01be8a7c736c00e70c1",
+  "run_id": "36390192047",
+  "run_number": "21",
   "render_mode": "frame-sequence",
   "frame_sequence": {
     "start": 1,
