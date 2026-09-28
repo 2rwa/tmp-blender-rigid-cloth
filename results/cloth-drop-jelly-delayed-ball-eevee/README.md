@@ -2,8 +2,8 @@
 
 A free cloth sheet falls onto a Soft Body jelly cube, then one rigid-body ball is released exactly two seconds later. The simulation is baked in two stable one-way passes before parallel EEVEE rendering.
 
-- source commit: `6dc1f060ab2e33f6c38a2fa71a731c1c6d380aff`
-- Actions run: `22` (`36392894709`)
+- source commit: `aa847bbbfacecb13dc5daee7524385f70deb195c`
+- Actions run: `23` (`36392989683`)
 - full artifact: `blender-cloth-drop-jelly-delayed-ball-eevee`
 
 ## Blend files
@@ -26,7 +26,7 @@ A free cloth sheet falls onto a Soft Body jelly cube, then one rigid-body ball i
     "luminance_max": 187,
     "luminance_mean": 60.947,
     "luminance_stddev": 50.328,
-    "sha256": "1c0b4af8027a2d417d1270aff0393f22f847729665c1ef612029972e98dfd2b2"
+    "sha256": "432f20aed081f85029408d8cf9e3eb633d8600bdf27d358748dc851826f6c5ed"
   },
   "movie": {
     "path": "output/cloth-drop-jelly-delayed-ball-eevee.mp4",
