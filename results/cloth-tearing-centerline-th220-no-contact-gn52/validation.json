@@ -1,0 +1,18 @@
+{
+  "experiment": "cloth-tearing-centerline-th220-no-contact-gn52",
+  "pattern": "centerline",
+  "blender_version": "5.2.2 LTS",
+  "impact_frame": 28,
+  "tear_observed": false,
+  "first_tear_frame": null,
+  "tear_after_planned_contact": false,
+  "base_vertices": 1575,
+  "max_vertices": 1575,
+  "max_components": 1,
+  "tear_edge_count": 310,
+  "custom_mode_applied": true,
+  "preview_frame": 36,
+  "preview_sha256": "a4fda3f1a2f7fc7b847c0598783f04bd09e1ef95387a7daaa38f483d8483fe3d",
+  "video_size_bytes": 9931,
+  "blend_size_bytes": 320777
+}
