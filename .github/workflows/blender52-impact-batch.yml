@@ -5,11 +5,11 @@ on:
     branches: [main]
     paths:
       - 'experiments52/_shared/**'
-      - 'experiments52/cloth-tearing-ball-impact-centerline-gn52/**'
-      - 'experiments52/cloth-tearing-ball-impact-local-zone-gn52/**'
-      - 'experiments52/cloth-tearing-ball-impact-notch-gn52/**'
-      - 'experiments52/cloth-tearing-ball-drop-hammock-gn52/**'
-      - 'experiments52/cloth-tearing-ball-swing-impact-gn52/**'
+      - 'experiments52/cloth-tearing-ball-impact-centerline-th120-gn52/**'
+      - 'experiments52/cloth-tearing-ball-impact-centerline-th135-gn52/**'
+      - 'experiments52/cloth-tearing-ball-impact-centerline-th155-gn52/**'
+      - 'experiments52/cloth-tearing-ball-impact-notch-th145-gn52/**'
+      - 'experiments52/cloth-tearing-ball-drop-hammock-th160-fastball-gn52/**'
       - '.github/workflows/blender52-impact-batch.yml'
   workflow_dispatch:
 
@@ -31,11 +31,11 @@ jobs:
       max-parallel: 5
       matrix:
         experiment:
-          - cloth-tearing-ball-impact-centerline-gn52
-          - cloth-tearing-ball-impact-local-zone-gn52
-          - cloth-tearing-ball-impact-notch-gn52
-          - cloth-tearing-ball-drop-hammock-gn52
-          - cloth-tearing-ball-swing-impact-gn52
+          - cloth-tearing-ball-impact-centerline-th120-gn52
+          - cloth-tearing-ball-impact-centerline-th135-gn52
+          - cloth-tearing-ball-impact-centerline-th155-gn52
+          - cloth-tearing-ball-impact-notch-th145-gn52
+          - cloth-tearing-ball-drop-hammock-th160-fastball-gn52
     env:
       EXPERIMENT: ${{ matrix.experiment }}
       BLENDER_VERSION: "5.2.2"
@@ -158,11 +158,11 @@ jobs:
       max-parallel: 1
       matrix:
         experiment:
-          - cloth-tearing-ball-impact-centerline-gn52
-          - cloth-tearing-ball-impact-local-zone-gn52
-          - cloth-tearing-ball-impact-notch-gn52
-          - cloth-tearing-ball-drop-hammock-gn52
-          - cloth-tearing-ball-swing-impact-gn52
+          - cloth-tearing-ball-impact-centerline-th120-gn52
+          - cloth-tearing-ball-impact-centerline-th135-gn52
+          - cloth-tearing-ball-impact-centerline-th155-gn52
+          - cloth-tearing-ball-impact-notch-th145-gn52
+          - cloth-tearing-ball-drop-hammock-th160-fastball-gn52
     env:
       EXPERIMENT: ${{ matrix.experiment }}
       SOURCE_COMMIT: ${{ github.sha }}
