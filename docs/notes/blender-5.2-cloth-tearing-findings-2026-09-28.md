@@ -211,16 +211,26 @@ The full real socket interface was captured and used to correct the script.
 
 Workflow run id: `36357349539`
 
-At the time this note was written:
+Final result:
 
 - runtime restore: success;
 - headless verification: success;
 - asset loading: success;
 - Blender 5.2 RNA input configuration: success;
 - real socket-name configuration: success;
-- `Build tearing scene and render frame sequence`: **in progress**.
+- 72-frame tearing simulation: success;
+- 72-frame render: success;
+- MP4 assembly: success;
+- final validator: failed only because a valid 18,553-byte MP4 was below an overly conservative 35 KB size threshold.
 
-This is the first run to reach the actual 72-frame tearing simulation/render stage without an immediate setup failure.
+Measured topology:
+
+- source: 1,073 vertices / 2,080 edges / 1,008 faces / 1 component;
+- first tear: frame 2, 1,077 vertices;
+- frame 6: 2,561 vertices / 3,078 edges / 1,008 faces / 491 components;
+- torn topology remained stable through frame 72.
+
+This confirms that Blender 5.2.2 Cloth Dynamics Tearing works headlessly in GitHub Actions.
 
 ## Current source commits
 
@@ -247,3 +257,16 @@ After run #3 completes:
 5. after that, bake torn Cloth and use it as a Mantaflow effector so liquid can pass through the opening.
 
 The existing Blender 4.0.2 physics workflow should remain untouched while the 5.2 experimental line is still being characterized.
+
+
+## Run #3 validator lesson
+
+A tiny MP4 is not a reliable failure signal for short, visually simple simulation clips.
+
+The 72-frame / 3-second tearing video was only 18,553 bytes because H.264 compressed the mostly static background extremely well. The physical/topological evidence was strong and the full frame sequence had rendered successfully.
+
+For this class of test:
+
+- topology change is the primary semantic proof;
+- frame count / preview existence are stronger media sanity signals than a large byte-size threshold;
+- use only a low floor (10 KB here) to catch empty/corrupt MP4 outputs.

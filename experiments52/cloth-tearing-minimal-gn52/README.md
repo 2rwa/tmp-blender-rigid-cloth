@@ -105,3 +105,21 @@ Important 5.2.2 socket names include:
 The run failed because the first script looked for a generic `Threshold` socket and therefore deliberately aborted rather than silently using a default.
 
 The implementation now targets the exact 5.2.2 names (`Constraint Steps`, `Linear Damping`, and `Tearing Threshold`). The default tearing mode is left unchanged for this first all-edges test.
+
+
+## Run #3: tearing succeeded
+
+The third run reached the actual simulation and rendered all 72 frames.
+
+Measured topology:
+
+- source: **1,073 vertices / 2,080 edges / 1,008 faces / 1 component**;
+- first tear: **frame 2**, 1,077 vertices;
+- frame 6: **2,561 vertices / 3,078 edges / 1,008 faces / 491 components**;
+- the torn topology then remained stable through frame 72.
+
+This is direct evidence that Blender 5.2.2 Cloth Dynamics Tearing works headlessly in GitHub Actions.
+
+The run failed only after rendering and MP4 assembly because the validator required the MP4 to be at least 35 KB. The valid 3-second H.264 output was only **18,553 bytes** because the scene has a nearly static backdrop and compresses extremely well.
+
+The video-size sanity threshold was therefore lowered to 10 KB. Topology validation remains the primary proof of tearing.
