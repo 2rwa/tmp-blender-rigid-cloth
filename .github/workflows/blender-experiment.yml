@@ -7,6 +7,8 @@ on:
       - 'results/**'
       - 'experiments52/**'
       - 'docs/**'
+      - 'web/**'
+      - 'data/**'
       - 'tools/build_pages.py'
       - '.github/workflows/pages-gallery.yml'
       - '.github/workflows/blender52-tearing.yml'
