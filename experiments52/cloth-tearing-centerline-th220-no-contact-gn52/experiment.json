@@ -1,0 +1,1 @@
+{"id":"cloth-tearing-centerline-th220-no-contact-gn52","title":"Cloth Tearing Control — Centerline Threshold 2.20 No Contact","description":"No-contact control for threshold 2.20. The prescribed sphere follows the same timing but stays far outside the cloth to separate intrinsic tearing from impact-triggered tearing.","series":"overnight-cloth-tearing-2026-09-29"}
