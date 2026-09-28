@@ -15,7 +15,9 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: tmp-blender-rigid-cloth-52-${{ github.ref }}
@@ -156,3 +158,176 @@ jobs:
           if-no-files-found: error
           retention-days: 7
           overwrite: true
+
+
+  publish:
+    needs: render
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      EXPERIMENT: ${{ github.event_name == 'workflow_dispatch' && inputs.experiment || 'cloth-tearing-minimal-gn52' }}
+
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Download validated tearing artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: blender52-${{ env.EXPERIMENT }}
+          path: output52
+
+      - name: Install publish dependency
+        run: python3 -m pip install --disable-pip-version-check --no-compile "Pillow==10.2.0"
+
+      - name: Generate persistent result
+        env:
+          SOURCE_COMMIT: ${{ github.sha }}
+          RUN_NUMBER: ${{ github.run_number }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import shutil
+          from pathlib import Path
+          from PIL import Image
+
+          exp = os.environ["EXPERIMENT"]
+          src = Path("output52")
+          dst = Path("results") / exp
+          manifest = json.loads(
+              (Path("experiments52") / exp / "experiment.json").read_text(encoding="utf-8")
+          )
+
+          if dst.exists():
+              shutil.rmtree(dst)
+          dst.mkdir(parents=True)
+
+          with Image.open(src / "preview.png") as im:
+              im.convert("RGB").save(dst / "preview.jpg", quality=88, optimize=True)
+
+          shutil.copy2(src / "validation.json", dst / "validation.json")
+          shutil.copy2(src / f"{exp}.mp4", dst / "media.mp4")
+          shutil.copy2(src / f"{exp}.blend", dst / f"{exp}.blend")
+          report = src / f"{exp}-report.json"
+          if report.is_file():
+              shutil.copy2(report, dst / report.name)
+
+          title = manifest.get("title", exp)
+          desc = manifest.get("description", "")
+          validation = json.loads((src / "validation.json").read_text(encoding="utf-8"))
+          readme = f"""# {title}
+
+{desc}
+
+- source commit: `{os.environ["SOURCE_COMMIT"]}`
+- Actions run: `{os.environ["RUN_NUMBER"]}` (`{os.environ["RUN_ID"]}`)
+- Blender line: **5.2 experimental Cloth Dynamics / Tearing**
+
+![Latest preview](./preview.jpg)
+
+## Validation
+
+```json
+{json.dumps(validation, indent=2)}
+```
+
+## License / ライセンス
+
+Unless otherwise noted, generated assets in this result are CC0-1.0.
+Source code and workflow files used to generate them are MIT-0.
+"""
+          (dst / "README.md").write_text(readme, encoding="utf-8")
+          PY
+
+      - name: Commit and push result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin "${GITHUB_REF_NAME}"
+          git rebase "origin/${GITHUB_REF_NAME}"
+          git add "results/$EXPERIMENT/"
+          if git diff --cached --quiet; then
+            echo "Result is already current."
+            exit 0
+          fi
+          git commit -m "chore: publish $EXPERIMENT result"
+          if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+            exit 0
+          fi
+          git fetch origin "${GITHUB_REF_NAME}"
+          git rebase "origin/${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+  pages:
+    needs: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Build Pages gallery
+        run: |
+          python3 -m py_compile tools/build_pages.py
+          python3 tools/build_pages.py
+
+      - name: Commit and push Pages gallery
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .nojekyll docs/
+          if git diff --cached --quiet; then
+            echo "Pages gallery is already current."
+            exit 0
+          fi
+          git commit -m "chore: publish Pages gallery [skip ci]"
+          if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+            exit 0
+          fi
+          git fetch origin "${GITHUB_REF_NAME}"
+          git reset --hard "origin/${GITHUB_REF_NAME}"
+          python3 tools/build_pages.py
+          git add index.html .nojekyll docs/
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "chore: publish Pages gallery [skip ci]"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+  deploy_pages:
+    needs: pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout latest Pages content
+        uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: docs
+
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

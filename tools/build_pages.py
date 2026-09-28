@@ -10,6 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPERIMENTS = ROOT / "experiments"
+EXPERIMENTS52 = ROOT / "experiments52"
 RESULTS = ROOT / "results"
 DOCS = ROOT / "docs"
 GITHUB_BASE = "https://github.com/2rwa/tmp-blender-rigid-cloth"
@@ -57,6 +58,10 @@ def load_entries() -> list[dict]:
     for result_dir in sorted(p for p in RESULTS.iterdir() if p.is_dir()):
         experiment_id = result_dir.name
         manifest_path = EXPERIMENTS / experiment_id / "experiment.json"
+        source_root = "experiments"
+        if not manifest_path.is_file():
+            manifest_path = EXPERIMENTS52 / experiment_id / "experiment.json"
+            source_root = "experiments52"
         validation_path = result_dir / "validation.json"
         preview_path = result_dir / "preview.jpg"
         readme_path = result_dir / "README.md"
@@ -93,6 +98,7 @@ def load_entries() -> list[dict]:
             "source_commit": source_commit,
             "run_number": run_number,
             "run_id": run_id,
+            "source_root": source_root,
             "first_publish_epoch": first_publish_epoch(result_dir),
             "has_media": (result_dir / "media.mp4").is_file(),
             "blend_files": blend_files,
@@ -152,7 +158,7 @@ def render(entries: list[dict], docs_mode: bool) -> str:
         links = [
             f'<a href="{asset_root}/preview.jpg">preview</a>',
             f'<a href="{asset_root}/validation.json">validation</a>',
-            f'<a href="{GITHUB_BASE}/tree/main/experiments/{eid}">source</a>',
+            f'<a href="{GITHUB_BASE}/tree/main/{entry["source_root"]}/{eid}">source</a>',
             f'<a href="{GITHUB_BASE}/tree/main/results/{eid}">result</a>',
         ]
         if entry["has_media"]:
