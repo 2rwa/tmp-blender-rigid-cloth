@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'tools/build_pages.py'
+      - 'web/**'
       - '.github/workflows/pages-gallery.yml'
   workflow_dispatch:
 
@@ -38,7 +39,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html .nojekyll docs/
+          git add index.html .nojekyll docs/ data/
           if git diff --cached --quiet; then
             echo "Gallery is already current."
             exit 0

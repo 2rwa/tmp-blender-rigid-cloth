@@ -78,3 +78,26 @@ Current important state:
 - Next sweeps should include Stretchiness, Bendiness, cloth Mass, Linear Damping, Substeps, Constraint Steps, and collider parameters rather than only Tearing Threshold.
 
 For this Blender 5.2 line, inspect the latest workflow and results before assuming older 60/120-minute limits still apply.
+
+
+## Pages experiment database
+
+The repository-wide gallery/index now uses a relational SQLite aggregate plus a denormalized JSON view instead of embedding every result directly into generated HTML.
+
+Architecture note:
+
+- `docs/notes/pages-database-architecture-2026-09-29.md`
+
+Persistent published database:
+
+- `docs/data/experiments.sqlite`
+
+Pages data view:
+
+- `docs/data/experiments.json`
+
+Static viewer sources:
+
+- `web/index.html`
+- `web/app.js`
+- `web/style.css`
