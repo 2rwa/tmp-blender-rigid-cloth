@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EXPERIMENTS = ROOT / "experiments"
 RESULTS = ROOT / "results"
 DOCS = ROOT / "docs"
-GITHUB_BASE = "https://github.com/2rwa/tmp-blender-rigid-cloth"
+GITHUB_BASE = "https://github.com/2rwa/tmp-blender-rigid-cloth"\nGALLERY_REVISION = "2026-09-28-first-publish-order"
 
 
 def first_publish_epoch(result_dir: Path) -> int:
@@ -192,7 +192,7 @@ def render(entries: list[dict], docs_mode: bool) -> str:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="dark">\n<meta name="gallery-revision" content="{GALLERY_REVISION}">
 <title>tmp-blender gallery</title>
 <style>
 :root {{ font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color:#edf3f8; background:#0a0d12; }}
