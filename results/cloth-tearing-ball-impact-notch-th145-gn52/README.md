@@ -2,8 +2,8 @@
 
 Seed-notch follow-up with a much higher tearing threshold, testing whether the pre-cut notch localizes a tear at impact instead of failing at frame 2.
 
-- source commit: `de81cc079b31d67ed67a6047144d9e5860455575`
-- Actions run: `5` (`36414555350`)
+- source commit: `fdeb60aae5c9d8690f0e91ca944492840a347284`
+- Actions run: `6` (`36414569236`)
 - Blender line: **5.2 experimental Cloth Dynamics / Tearing**
 
 ![Latest preview](./preview.jpg)
