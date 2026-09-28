@@ -270,3 +270,14 @@ For this class of test:
 - topology change is the primary semantic proof;
 - frame count / preview existence are stronger media sanity signals than a large byte-size threshold;
 - use only a low floor (10 KB here) to catch empty/corrupt MP4 outputs.
+
+
+## Run #4 validator lesson
+
+The cached retry proved the checkpoint flow works: the 72-frame simulation/render and MP4 assembly were all skipped.
+
+Validation then failed only because the .blend was **288,366 bytes**, below an arbitrary 500 KB floor.
+
+For Geometry Nodes asset-driven scenes, .blend size can be small even when the simulation/render outputs are valid. File size is therefore only a corruption sanity check, not a semantic success criterion.
+
+The minimum .blend size was reduced to 150 KB. Tearing remains validated from per-frame evaluated topology.

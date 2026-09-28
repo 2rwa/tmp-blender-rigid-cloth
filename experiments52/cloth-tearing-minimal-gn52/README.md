@@ -123,3 +123,14 @@ This is direct evidence that Blender 5.2.2 Cloth Dynamics Tearing works headless
 The run failed only after rendering and MP4 assembly because the validator required the MP4 to be at least 35 KB. The valid 3-second H.264 output was only **18,553 bytes** because the scene has a nearly static backdrop and compresses extremely well.
 
 The video-size sanity threshold was therefore lowered to 10 KB. Topology validation remains the primary proof of tearing.
+
+
+## Run #4: cached outputs were valid; blend-size threshold was too high
+
+The fourth run restored the complete render checkpoint successfully and skipped all expensive simulation/render work.
+
+The revised compact-video check passed, but validation then rejected the .blend because it was only **288,366 bytes** while the first generic threshold required 500 KB.
+
+That threshold was not appropriate for this scene. The file mainly stores scene data plus a reference to Blender's bundled Cloth Dynamics Geometry Nodes asset; the simulation state is not embedded as a large bake.
+
+The .blend sanity floor is now **150 KB**, while actual tearing correctness continues to be established by the recorded evaluated topology.
