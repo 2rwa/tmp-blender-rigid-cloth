@@ -2,8 +2,8 @@
 
 High-threshold centerline calibration run. Tests whether the cloth can remain intact until the prescribed sphere impact.
 
-- source commit: `de81cc079b31d67ed67a6047144d9e5860455575`
-- Actions run: `5` (`36414555350`)
+- source commit: `fdeb60aae5c9d8690f0e91ca944492840a347284`
+- Actions run: `6` (`36414569236`)
 - Blender line: **5.2 experimental Cloth Dynamics / Tearing**
 
 ![Latest preview](./preview.jpg)
