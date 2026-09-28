@@ -79,12 +79,11 @@ Current important state:
 
 For this Blender 5.2 line, inspect the latest workflow and results before assuming older 60/120-minute limits still apply.
 
+## Pages experiment database / top page
 
-## Pages experiment database
+The repository-wide top page is now a **database-backed experiment browser**, not a generated pile of per-result HTML cards.
 
-The repository-wide gallery/index now uses a relational SQLite aggregate plus a denormalized JSON view instead of embedding every result directly into generated HTML.
-
-Architecture note:
+Detailed architecture and migration notes:
 
 - `docs/notes/pages-database-architecture-2026-09-29.md`
 
@@ -92,12 +91,52 @@ Persistent published database:
 
 - `docs/data/experiments.sqlite`
 
-Pages data view:
+Pages read model:
 
 - `docs/data/experiments.json`
+
+Root analysis mirrors:
+
+- `data/experiments.sqlite`
+- `data/experiments.json`
 
 Static viewer sources:
 
 - `web/index.html`
 - `web/app.js`
 - `web/style.css`
+
+Builder/indexer:
+
+- `tools/build_pages.py`
+
+The browser reads the JSON export, not SQLite directly.
+
+Current top-page features include search, category/system/tag filters, sorting, snapshot-first cards, click-to-load video, summary metrics, expandable parameters, and source/result/Actions links.
+
+### Top-page editing rule
+
+To change presentation, edit `web/*`.
+
+To change indexing/schema/export behavior, edit `tools/build_pages.py`.
+
+Do not manually add experiment cards to `docs/index.html`; it is generated output.
+
+### Workflow isolation rule
+
+Presentation/index-only changes must not start Blender physics jobs.
+
+The Blender 4 workflow currently ignores:
+
+- `web/**`
+- `data/**`
+
+The dedicated Pages workflow handles viewer/index rebuilds.
+
+If another generated data directory is introduced later, review workflow path filters before committing it.
+
+### Pages race lesson
+
+Generated Pages output can race with another repository writer.
+
+The Pages workflow therefore uses the same recovery discipline as other generated outputs: fetch/reset to latest main, rebuild, commit only if changed, and retry push after a non-fast-forward rejection.
