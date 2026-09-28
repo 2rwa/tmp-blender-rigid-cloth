@@ -1,0 +1,18 @@
+{
+  "experiment": "cloth-tearing-ball-impact-centerline-gn52",
+  "pattern": "centerline",
+  "blender_version": "5.2.2 LTS",
+  "impact_frame": 28,
+  "tear_observed": true,
+  "first_tear_frame": 2,
+  "tear_after_planned_contact": false,
+  "base_vertices": 1575,
+  "max_vertices": 1973,
+  "max_components": 122,
+  "tear_edge_count": 310,
+  "custom_mode_applied": true,
+  "preview_frame": 31,
+  "preview_sha256": "e1f0b3ed5a21151f55b675a2acd9adab80d32e6dc2a0ffca59232ced39e22d28",
+  "video_size_bytes": 74117,
+  "blend_size_bytes": 320821
+}
