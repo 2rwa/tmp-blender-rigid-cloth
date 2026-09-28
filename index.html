@@ -1,524 +1,87 @@
-<!-- SPDX-License-Identifier: MIT-0 -->
 <!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="dark">
-<meta name="gallery-revision" content="2026-09-28-first-publish-order">
-<title>tmp-blender gallery</title>
-<style>
-:root { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color:#edf3f8; background:#0a0d12; }
-* { box-sizing:border-box; }
-body { margin:0; background:radial-gradient(circle at top,#162231 0,#0a0d12 42rem); }
-header { max-width:1200px; margin:auto; padding:42px 22px 18px; }
-h1 { margin:0 0 8px; font-size:clamp(2rem,5vw,4rem); letter-spacing:-.04em; }
-header p { margin:0; color:#9fb2c5; }
-main { max-width:1200px; margin:auto; padding:22px; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:22px; }
-.card { overflow:hidden; border:1px solid #253244; border-radius:18px; background:#101722d9; box-shadow:0 18px 50px #0007; }
-.visual { aspect-ratio:16/9; background:#000; display:flex; align-items:center; justify-content:center; }
-.visual img,.visual video { width:100%; height:100%; object-fit:cover; display:block; }
-.body { padding:18px; }
-h2 { margin:0; font-size:1.35rem; }
-.id,.source { color:#8297aa; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.82rem; }
-table { width:100%; border-collapse:collapse; margin:14px 0; font-size:.86rem; }
-th,td { padding:5px 0; border-bottom:1px solid #202d3d; text-align:left; }
-th { color:#8fa4b8; font-weight:500; }
-td { text-align:right; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
-a { color:#78c4ff; text-decoration:none; }
-a:hover { text-decoration:underline; }
-.links { font-size:.88rem; line-height:1.8; }
-footer { max-width:1200px; margin:auto; padding:10px 22px 44px; color:#73879a; }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>tmp-blender physics lab</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
-<body>
-<header>
-  <h1>tmp-blender</h1>
-  <p>GitHub Actionsで生成したBlender実験の公開ギャラリー。preview / validation / 短い動画を直接確認できます。</p>
-</header>
-<main>
+<body data-asset-root="results" data-data-path="data/experiments.json">
+  <header class="hero">
+    <div>
+      <p class="eyebrow">2rwa / tmp-blender-rigid-cloth</p>
+      <h1>Physics experiment index</h1>
+      <p class="lede">Blender / Geometry Nodes / rigid body / soft body / cloth experiments indexed from committed results.</p>
+    </div>
+    <div class="data-links">
+      <a href="./data/experiments.json">JSON</a>
+      <a href="./data/experiments.sqlite">SQLite</a>
+      <a href="https://github.com/2rwa/tmp-blender-rigid-cloth">GitHub</a>
+    </div>
+  </header>
 
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-swing-impact-th260-longwide-gn52/preview.jpg"><source src="results/cloth-tearing-ball-swing-impact-th260-longwide-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Swing Impact Tearing — 2.60 Long Wide</h2>
-            <p class="id">cloth-tearing-ball-swing-impact-th260-longwide-gn52</p>
-            <p>144-frame distant-view swing run above the previous 2.20 self-tearing threshold.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/a29c215dff6b583e39bb58439cacff79a00d6bdb">a29c215dff</a></p>
-            <table><tr><th>duration_seconds</th><td>6.0</td></tr><tr><th>video_size_bytes</th><td>90,560 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-swing-impact-th260-longwide-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-swing-impact-th260-longwide-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-swing-impact-th260-longwide-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-swing-impact-th260-longwide-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-swing-impact-th260-longwide-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-swing-impact-th260-longwide-gn52/cloth-tearing-ball-swing-impact-th260-longwide-gn52.blend">cloth-tearing-ball-swing-impact-th260-longwide-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36472219772">Actions #9</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-drop-hammock-th190-longwide-gn52/preview.jpg"><source src="results/cloth-tearing-ball-drop-hammock-th190-longwide-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Drop Tearing — Hammock 1.90 Long Wide</h2>
-            <p class="id">cloth-tearing-ball-drop-hammock-th190-longwide-gn52</p>
-            <p>144-frame distant-view hammock run between the previous tearing and no-tear thresholds.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/a29c215dff6b583e39bb58439cacff79a00d6bdb">a29c215dff</a></p>
-            <table><tr><th>duration_seconds</th><td>6.0</td></tr><tr><th>video_size_bytes</th><td>30,744 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-drop-hammock-th190-longwide-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-drop-hammock-th190-longwide-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-drop-hammock-th190-longwide-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-drop-hammock-th190-longwide-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-drop-hammock-th190-longwide-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-drop-hammock-th190-longwide-gn52/cloth-tearing-ball-drop-hammock-th190-longwide-gn52.blend">cloth-tearing-ball-drop-hammock-th190-longwide-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36472219772">Actions #9</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-local-zone-th190-longwide-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-local-zone-th190-longwide-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Local Zone 1.90 Long Wide</h2>
-            <p class="id">cloth-tearing-ball-impact-local-zone-th190-longwide-gn52</p>
-            <p>144-frame distant-view local-zone run near the observed tearing boundary.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/a29c215dff6b583e39bb58439cacff79a00d6bdb">a29c215dff</a></p>
-            <table><tr><th>duration_seconds</th><td>6.0</td></tr><tr><th>video_size_bytes</th><td>77,062 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-local-zone-th190-longwide-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-local-zone-th190-longwide-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-local-zone-th190-longwide-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-local-zone-th190-longwide-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-local-zone-th190-longwide-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-local-zone-th190-longwide-gn52/cloth-tearing-ball-impact-local-zone-th190-longwide-gn52.blend">cloth-tearing-ball-impact-local-zone-th190-longwide-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36472219772">Actions #9</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-notch-th190-longwide-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-notch-th190-longwide-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Seed Notch 1.90 Long Wide</h2>
-            <p class="id">cloth-tearing-ball-impact-notch-th190-longwide-gn52</p>
-            <p>144-frame distant-view seed-notch run near the observed tearing boundary.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/a29c215dff6b583e39bb58439cacff79a00d6bdb">a29c215dff</a></p>
-            <table><tr><th>duration_seconds</th><td>6.0</td></tr><tr><th>video_size_bytes</th><td>84,488 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-notch-th190-longwide-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-notch-th190-longwide-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-notch-th190-longwide-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-notch-th190-longwide-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-notch-th190-longwide-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-notch-th190-longwide-gn52/cloth-tearing-ball-impact-notch-th190-longwide-gn52.blend">cloth-tearing-ball-impact-notch-th190-longwide-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36472219772">Actions #9</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-centerline-th195-no-contact-longwide-gn52/preview.jpg"><source src="results/cloth-tearing-centerline-th195-no-contact-longwide-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Cloth Tearing Control — Centerline 1.95 No Contact Long Wide</h2>
-            <p class="id">cloth-tearing-centerline-th195-no-contact-longwide-gn52</p>
-            <p>144-frame no-contact control at threshold 1.95 with the same distant camera.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/a29c215dff6b583e39bb58439cacff79a00d6bdb">a29c215dff</a></p>
-            <table><tr><th>duration_seconds</th><td>6.0</td></tr><tr><th>video_size_bytes</th><td>9,906 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-centerline-th195-no-contact-longwide-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-centerline-th195-no-contact-longwide-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-centerline-th195-no-contact-longwide-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-centerline-th195-no-contact-longwide-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-centerline-th195-no-contact-longwide-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-centerline-th195-no-contact-longwide-gn52/cloth-tearing-centerline-th195-no-contact-longwide-gn52.blend">cloth-tearing-centerline-th195-no-contact-longwide-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36472219772">Actions #9</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-centerline-th205-longwide-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-centerline-th205-longwide-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Centerline 2.05 Long Wide</h2>
-            <p class="id">cloth-tearing-ball-impact-centerline-th205-longwide-gn52</p>
-            <p>Long-view 144-frame centerline calibration at threshold 2.05.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/a29c215dff6b583e39bb58439cacff79a00d6bdb">a29c215dff</a></p>
-            <table><tr><th>duration_seconds</th><td>6.0</td></tr><tr><th>video_size_bytes</th><td>66,001 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-centerline-th205-longwide-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-centerline-th205-longwide-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-centerline-th205-longwide-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-centerline-th205-longwide-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-centerline-th205-longwide-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-centerline-th205-longwide-gn52/cloth-tearing-ball-impact-centerline-th205-longwide-gn52.blend">cloth-tearing-ball-impact-centerline-th205-longwide-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36472219772">Actions #9</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-centerline-th200-longwide-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-centerline-th200-longwide-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Centerline 2.00 Long Wide</h2>
-            <p class="id">cloth-tearing-ball-impact-centerline-th200-longwide-gn52</p>
-            <p>Long-view 144-frame centerline calibration at threshold 2.00.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/a29c215dff6b583e39bb58439cacff79a00d6bdb">a29c215dff</a></p>
-            <table><tr><th>duration_seconds</th><td>6.0</td></tr><tr><th>video_size_bytes</th><td>65,756 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-centerline-th200-longwide-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-centerline-th200-longwide-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-centerline-th200-longwide-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-centerline-th200-longwide-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-centerline-th200-longwide-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-centerline-th200-longwide-gn52/cloth-tearing-ball-impact-centerline-th200-longwide-gn52.blend">cloth-tearing-ball-impact-centerline-th200-longwide-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36472219772">Actions #9</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-centerline-th195-longwide-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-centerline-th195-longwide-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Centerline 1.95 Long Wide</h2>
-            <p class="id">cloth-tearing-ball-impact-centerline-th195-longwide-gn52</p>
-            <p>Long-view 144-frame centerline calibration at threshold 1.95.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/a29c215dff6b583e39bb58439cacff79a00d6bdb">a29c215dff</a></p>
-            <table><tr><th>duration_seconds</th><td>6.0</td></tr><tr><th>video_size_bytes</th><td>64,837 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-centerline-th195-longwide-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-centerline-th195-longwide-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-centerline-th195-longwide-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-centerline-th195-longwide-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-centerline-th195-longwide-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-centerline-th195-longwide-gn52/cloth-tearing-ball-impact-centerline-th195-longwide-gn52.blend">cloth-tearing-ball-impact-centerline-th195-longwide-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36472219772">Actions #9</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-centerline-th190-longwide-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-centerline-th190-longwide-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Centerline 1.90 Long Wide</h2>
-            <p class="id">cloth-tearing-ball-impact-centerline-th190-longwide-gn52</p>
-            <p>Long-view 144-frame centerline calibration at threshold 1.90.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/a29c215dff6b583e39bb58439cacff79a00d6bdb">a29c215dff</a></p>
-            <table><tr><th>duration_seconds</th><td>6.0</td></tr><tr><th>video_size_bytes</th><td>63,520 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-centerline-th190-longwide-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-centerline-th190-longwide-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-centerline-th190-longwide-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-centerline-th190-longwide-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-centerline-th190-longwide-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-centerline-th190-longwide-gn52/cloth-tearing-ball-impact-centerline-th190-longwide-gn52.blend">cloth-tearing-ball-impact-centerline-th190-longwide-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36472219772">Actions #9</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-centerline-th185-longwide-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-centerline-th185-longwide-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Centerline 1.85 Long Wide</h2>
-            <p class="id">cloth-tearing-ball-impact-centerline-th185-longwide-gn52</p>
-            <p>Long-view 144-frame centerline calibration at threshold 1.85.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/a29c215dff6b583e39bb58439cacff79a00d6bdb">a29c215dff</a></p>
-            <table><tr><th>duration_seconds</th><td>6.0</td></tr><tr><th>video_size_bytes</th><td>67,062 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-centerline-th185-longwide-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-centerline-th185-longwide-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-centerline-th185-longwide-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-centerline-th185-longwide-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-centerline-th185-longwide-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-centerline-th185-longwide-gn52/cloth-tearing-ball-impact-centerline-th185-longwide-gn52.blend">cloth-tearing-ball-impact-centerline-th185-longwide-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36472219772">Actions #9</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-centerline-th220-no-contact-gn52/preview.jpg"><source src="results/cloth-tearing-centerline-th220-no-contact-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Cloth Tearing Control — Centerline Threshold 2.20 No Contact</h2>
-            <p class="id">cloth-tearing-centerline-th220-no-contact-gn52</p>
-            <p>No-contact control for threshold 2.20. The prescribed sphere follows the same timing but stays far outside the cloth to separate intrinsic tearing from impact-triggered tearing.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/aa660ca7aa9e59dfcbe8a97bfc5ad4fe21ff0664">aa660ca7aa</a></p>
-            <table><tr><th>video_size_bytes</th><td>9,931 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-centerline-th220-no-contact-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-centerline-th220-no-contact-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-centerline-th220-no-contact-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-centerline-th220-no-contact-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-centerline-th220-no-contact-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-centerline-th220-no-contact-gn52/cloth-tearing-centerline-th220-no-contact-gn52.blend">cloth-tearing-centerline-th220-no-contact-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36463210144">Actions #8</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-swing-impact-th220-fast-gn52/preview.jpg"><source src="results/cloth-tearing-ball-swing-impact-th220-fast-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Swing Impact Tearing — Threshold 2.20 Fast</h2>
-            <p class="id">cloth-tearing-ball-swing-impact-th220-fast-gn52</p>
-            <p>Overnight oblique swing test at threshold 2.20 with a larger faster collider.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/aa660ca7aa9e59dfcbe8a97bfc5ad4fe21ff0664">aa660ca7aa</a></p>
-            <table><tr><th>video_size_bytes</th><td>97,853 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-swing-impact-th220-fast-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-swing-impact-th220-fast-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-swing-impact-th220-fast-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-swing-impact-th220-fast-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-swing-impact-th220-fast-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-swing-impact-th220-fast-gn52/cloth-tearing-ball-swing-impact-th220-fast-gn52.blend">cloth-tearing-ball-swing-impact-th220-fast-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36463210144">Actions #8</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-drop-hammock-th220-fastball-gn52/preview.jpg"><source src="results/cloth-tearing-ball-drop-hammock-th220-fastball-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Drop Tearing — Hammock Threshold 2.20 Fast Ball</h2>
-            <p class="id">cloth-tearing-ball-drop-hammock-th220-fastball-gn52</p>
-            <p>Overnight hammock test at threshold 2.20 with a larger fast collider.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/aa660ca7aa9e59dfcbe8a97bfc5ad4fe21ff0664">aa660ca7aa</a></p>
-            <table><tr><th>video_size_bytes</th><td>33,863 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-drop-hammock-th220-fastball-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-drop-hammock-th220-fastball-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-drop-hammock-th220-fastball-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-drop-hammock-th220-fastball-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-drop-hammock-th220-fastball-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-drop-hammock-th220-fastball-gn52/cloth-tearing-ball-drop-hammock-th220-fastball-gn52.blend">cloth-tearing-ball-drop-hammock-th220-fastball-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36463210144">Actions #8</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-local-zone-th220-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-local-zone-th220-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Local Zone Threshold 2.20</h2>
-            <p class="id">cloth-tearing-ball-impact-local-zone-th220-gn52</p>
-            <p>Overnight local-zone test at threshold 2.20.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/aa660ca7aa9e59dfcbe8a97bfc5ad4fe21ff0664">aa660ca7aa</a></p>
-            <table><tr><th>video_size_bytes</th><td>72,130 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-local-zone-th220-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-local-zone-th220-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-local-zone-th220-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-local-zone-th220-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-local-zone-th220-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-local-zone-th220-gn52/cloth-tearing-ball-impact-local-zone-th220-gn52.blend">cloth-tearing-ball-impact-local-zone-th220-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36463210144">Actions #8</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-notch-th220-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-notch-th220-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Seed Notch Threshold 2.20</h2>
-            <p class="id">cloth-tearing-ball-impact-notch-th220-gn52</p>
-            <p>Overnight seed-notch test at threshold 2.20.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/aa660ca7aa9e59dfcbe8a97bfc5ad4fe21ff0664">aa660ca7aa</a></p>
-            <table><tr><th>video_size_bytes</th><td>80,404 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-notch-th220-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-notch-th220-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-notch-th220-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-notch-th220-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-notch-th220-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-notch-th220-gn52/cloth-tearing-ball-impact-notch-th220-gn52.blend">cloth-tearing-ball-impact-notch-th220-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36463210144">Actions #8</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-centerline-th500-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-centerline-th500-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Centerline Threshold 5.00</h2>
-            <p class="id">cloth-tearing-ball-impact-centerline-th500-gn52</p>
-            <p>Overnight centerline threshold sweep at 5.00.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/aa660ca7aa9e59dfcbe8a97bfc5ad4fe21ff0664">aa660ca7aa</a></p>
-            <table><tr><th>video_size_bytes</th><td>78,082 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-centerline-th500-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-centerline-th500-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-centerline-th500-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-centerline-th500-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-centerline-th500-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-centerline-th500-gn52/cloth-tearing-ball-impact-centerline-th500-gn52.blend">cloth-tearing-ball-impact-centerline-th500-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36463210144">Actions #8</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-centerline-th360-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-centerline-th360-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Centerline Threshold 3.60</h2>
-            <p class="id">cloth-tearing-ball-impact-centerline-th360-gn52</p>
-            <p>Overnight centerline threshold sweep at 3.60.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/aa660ca7aa9e59dfcbe8a97bfc5ad4fe21ff0664">aa660ca7aa</a></p>
-            <table><tr><th>video_size_bytes</th><td>78,082 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-centerline-th360-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-centerline-th360-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-centerline-th360-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-centerline-th360-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-centerline-th360-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-centerline-th360-gn52/cloth-tearing-ball-impact-centerline-th360-gn52.blend">cloth-tearing-ball-impact-centerline-th360-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36463210144">Actions #8</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-centerline-th280-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-centerline-th280-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Centerline Threshold 2.80</h2>
-            <p class="id">cloth-tearing-ball-impact-centerline-th280-gn52</p>
-            <p>Overnight centerline threshold sweep at 2.80.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/aa660ca7aa9e59dfcbe8a97bfc5ad4fe21ff0664">aa660ca7aa</a></p>
-            <table><tr><th>video_size_bytes</th><td>78,125 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-centerline-th280-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-centerline-th280-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-centerline-th280-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-centerline-th280-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-centerline-th280-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-centerline-th280-gn52/cloth-tearing-ball-impact-centerline-th280-gn52.blend">cloth-tearing-ball-impact-centerline-th280-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36463210144">Actions #8</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-centerline-th220-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-centerline-th220-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Centerline Threshold 2.20</h2>
-            <p class="id">cloth-tearing-ball-impact-centerline-th220-gn52</p>
-            <p>Overnight centerline threshold sweep at 2.20.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/aa660ca7aa9e59dfcbe8a97bfc5ad4fe21ff0664">aa660ca7aa</a></p>
-            <table><tr><th>video_size_bytes</th><td>78,125 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-centerline-th220-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-centerline-th220-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-centerline-th220-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-centerline-th220-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-centerline-th220-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-centerline-th220-gn52/cloth-tearing-ball-impact-centerline-th220-gn52.blend">cloth-tearing-ball-impact-centerline-th220-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36463210144">Actions #8</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-centerline-th180-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-centerline-th180-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Centerline Threshold 1.80</h2>
-            <p class="id">cloth-tearing-ball-impact-centerline-th180-gn52</p>
-            <p>Overnight centerline threshold sweep at 1.80.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/aa660ca7aa9e59dfcbe8a97bfc5ad4fe21ff0664">aa660ca7aa</a></p>
-            <table><tr><th>video_size_bytes</th><td>81,141 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-centerline-th180-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-centerline-th180-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-centerline-th180-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-centerline-th180-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-centerline-th180-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-centerline-th180-gn52/cloth-tearing-ball-impact-centerline-th180-gn52.blend">cloth-tearing-ball-impact-centerline-th180-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36463210144">Actions #8</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-drop-hammock-th160-fastball-gn52/preview.jpg"><source src="results/cloth-tearing-ball-drop-hammock-th160-fastball-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Drop Tearing — Hammock Threshold 1.60 Fast Ball</h2>
-            <p class="id">cloth-tearing-ball-drop-hammock-th160-fastball-gn52</p>
-            <p>Hammock follow-up with threshold 1.60 and a larger, faster prescribed collider. It tests whether impact can overcome a threshold high enough to avoid immediate self tearing.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/fdeb60aae5c9d8690f0e91ca944492840a347284">fdeb60aae5</a></p>
-            <table><tr><th>video_size_bytes</th><td>35,239 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-drop-hammock-th160-fastball-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-drop-hammock-th160-fastball-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-drop-hammock-th160-fastball-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-drop-hammock-th160-fastball-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-drop-hammock-th160-fastball-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-drop-hammock-th160-fastball-gn52/cloth-tearing-ball-drop-hammock-th160-fastball-gn52.blend">cloth-tearing-ball-drop-hammock-th160-fastball-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36414569236">Actions #6</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-notch-th145-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-notch-th145-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Seed Notch Threshold 1.45</h2>
-            <p class="id">cloth-tearing-ball-impact-notch-th145-gn52</p>
-            <p>Seed-notch follow-up with a much higher tearing threshold, testing whether the pre-cut notch localizes a tear at impact instead of failing at frame 2.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/fdeb60aae5c9d8690f0e91ca944492840a347284">fdeb60aae5</a></p>
-            <table><tr><th>video_size_bytes</th><td>70,758 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-notch-th145-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-notch-th145-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-notch-th145-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-notch-th145-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-notch-th145-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-notch-th145-gn52/cloth-tearing-ball-impact-notch-th145-gn52.blend">cloth-tearing-ball-impact-notch-th145-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36414569236">Actions #6</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-centerline-th155-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-centerline-th155-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Centerline Threshold 1.55</h2>
-            <p class="id">cloth-tearing-ball-impact-centerline-th155-gn52</p>
-            <p>High-threshold centerline calibration run. Tests whether the cloth can remain intact until the prescribed sphere impact.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/fdeb60aae5c9d8690f0e91ca944492840a347284">fdeb60aae5</a></p>
-            <table><tr><th>video_size_bytes</th><td>87,264 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-centerline-th155-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-centerline-th155-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-centerline-th155-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-centerline-th155-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-centerline-th155-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-centerline-th155-gn52/cloth-tearing-ball-impact-centerline-th155-gn52.blend">cloth-tearing-ball-impact-centerline-th155-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36414569236">Actions #6</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-centerline-th135-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-centerline-th135-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Centerline Threshold 1.35</h2>
-            <p class="id">cloth-tearing-ball-impact-centerline-th135-gn52</p>
-            <p>Threshold calibration run at 1.35, intended to bracket the transition from immediate gravity-driven tearing to impact-triggered tearing.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/fdeb60aae5c9d8690f0e91ca944492840a347284">fdeb60aae5</a></p>
-            <table><tr><th>video_size_bytes</th><td>73,983 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-centerline-th135-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-centerline-th135-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-centerline-th135-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-centerline-th135-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-centerline-th135-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-centerline-th135-gn52/cloth-tearing-ball-impact-centerline-th135-gn52.blend">cloth-tearing-ball-impact-centerline-th135-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36414569236">Actions #6</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-centerline-th120-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-centerline-th120-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Centerline Threshold 1.20</h2>
-            <p class="id">cloth-tearing-ball-impact-centerline-th120-gn52</p>
-            <p>Threshold calibration run. Same centerline impact as the baseline, with tearing threshold raised from 1.11 to 1.20 to suppress frame-2 self tearing.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/fdeb60aae5c9d8690f0e91ca944492840a347284">fdeb60aae5</a></p>
-            <table><tr><th>video_size_bytes</th><td>87,716 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-centerline-th120-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-centerline-th120-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-centerline-th120-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-centerline-th120-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-centerline-th120-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-centerline-th120-gn52/cloth-tearing-ball-impact-centerline-th120-gn52.blend">cloth-tearing-ball-impact-centerline-th120-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36414569236">Actions #6</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-swing-impact-gn52/preview.jpg"><source src="results/cloth-tearing-ball-swing-impact-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Oblique Swing</h2>
-            <p class="id">cloth-tearing-ball-swing-impact-gn52</p>
-            <p>A sphere follows an oblique side-impact path into a hanging cloth. A diagonal tear-enabled band tests whether the rip follows the impact direction.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/2e1914dc1c2f97f3ac0860ff4dd98978939eeb1e">2e1914dc1c</a></p>
-            <table><tr><th>video_size_bytes</th><td>122,878 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-swing-impact-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-swing-impact-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-swing-impact-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-swing-impact-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-swing-impact-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-swing-impact-gn52/cloth-tearing-ball-swing-impact-gn52.blend">cloth-tearing-ball-swing-impact-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36411738548">Actions #4</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-drop-hammock-gn52/preview.jpg"><source src="results/cloth-tearing-ball-drop-hammock-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Drop Tearing — Hammock</h2>
-            <p class="id">cloth-tearing-ball-drop-hammock-gn52</p>
-            <p>A large sphere drops vertically onto a four-corner-pinned horizontal cloth. Tearing is localized near the center to test catch-then-rupture behavior.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/2e1914dc1c2f97f3ac0860ff4dd98978939eeb1e">2e1914dc1c</a></p>
-            <table><tr><th>video_size_bytes</th><td>79,679 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-drop-hammock-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-drop-hammock-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-drop-hammock-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-drop-hammock-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-drop-hammock-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-drop-hammock-gn52/cloth-tearing-ball-drop-hammock-gn52.blend">cloth-tearing-ball-drop-hammock-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36411738548">Actions #4</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-notch-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-notch-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Seed Notch</h2>
-            <p class="id">cloth-tearing-ball-impact-notch-gn52</p>
-            <p>A hanging cloth starts with a small central notch and a narrow tear-enabled band. A sphere hits the notch region to test crack growth from a seeded defect.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/2e1914dc1c2f97f3ac0860ff4dd98978939eeb1e">2e1914dc1c</a></p>
-            <table><tr><th>video_size_bytes</th><td>80,484 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-notch-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-notch-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-notch-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-notch-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-notch-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-notch-gn52/cloth-tearing-ball-impact-notch-gn52.blend">cloth-tearing-ball-impact-notch-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36411738548">Actions #4</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-local-zone-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-local-zone-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Local Zone</h2>
-            <p class="id">cloth-tearing-ball-impact-local-zone-gn52</p>
-            <p>A smaller faster sphere strikes the center of a hanging cloth. Tearing is allowed only in a compact circular impact zone to test puncture-like local failure.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/2e1914dc1c2f97f3ac0860ff4dd98978939eeb1e">2e1914dc1c</a></p>
-            <table><tr><th>video_size_bytes</th><td>71,759 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-local-zone-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-local-zone-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-local-zone-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-local-zone-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-local-zone-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-local-zone-gn52/cloth-tearing-ball-impact-local-zone-gn52.blend">cloth-tearing-ball-impact-local-zone-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36411738548">Actions #4</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-ball-impact-centerline-gn52/preview.jpg"><source src="results/cloth-tearing-ball-impact-centerline-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Ball Impact Tearing — Centerline</h2>
-            <p class="id">cloth-tearing-ball-impact-centerline-gn52</p>
-            <p>A prescribed sphere strikes a hanging Blender 5.2 Cloth Dynamics sheet. Only a narrow vertical edge band is tear-enabled to test a controlled rip from the impact point.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/2e1914dc1c2f97f3ac0860ff4dd98978939eeb1e">2e1914dc1c</a></p>
-            <table><tr><th>video_size_bytes</th><td>74,117 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-ball-impact-centerline-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-ball-impact-centerline-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-ball-impact-centerline-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-ball-impact-centerline-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-ball-impact-centerline-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-ball-impact-centerline-gn52/cloth-tearing-ball-impact-centerline-gn52.blend">cloth-tearing-ball-impact-centerline-gn52.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36411738548">Actions #4</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-tearing-minimal-gn52/preview.jpg"><source src="results/cloth-tearing-minimal-gn52/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Blender 5.2 Cloth Dynamics Minimal Tearing</h2>
-            <p class="id">cloth-tearing-minimal-gn52</p>
-            <p>Experimental Blender 5.2.2 Geometry Nodes Cloth Dynamics / XPBD tearing test. A top-pinned hanging cloth is pulled by strong gravity and validated by actual topology changes.</p>
-            
-            <table><tr><th>video_size_bytes</th><td>18,553 bytes</td></tr></table>
-            <p class="links"><a href="results/cloth-tearing-minimal-gn52/preview.jpg">preview</a> · <a href="results/cloth-tearing-minimal-gn52/media.mp4">mp4</a> · <a href="results/cloth-tearing-minimal-gn52/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments52/cloth-tearing-minimal-gn52">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-tearing-minimal-gn52">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-tearing-minimal-gn52/cloth-tearing-minimal-gn52.blend">cloth-tearing-minimal-gn52.blend</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/mantaflow-liquid-baked-cloth-effector-eevee/preview.jpg"><source src="results/mantaflow-liquid-baked-cloth-effector-eevee/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Mantaflow Liquid + Baked Deforming Cloth Effector EEVEE</h2>
-            <p class="id">mantaflow-liquid-baked-cloth-effector-eevee</p>
-            <p>A real Cloth simulation is baked to shape keys first, then replayed as an animated planar Mantaflow Fluid Effector while true FLIP liquid falls onto it. Coupling remains deliberately one-way from the deforming Cloth into the liquid solve.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/336efd383e3906fd518f99450a900fd9f1671fd1">336efd383e</a></p>
-            <table></table>
-            <p class="links"><a href="results/mantaflow-liquid-baked-cloth-effector-eevee/preview.jpg">preview</a> · <a href="results/mantaflow-liquid-baked-cloth-effector-eevee/media.mp4">mp4</a> · <a href="results/mantaflow-liquid-baked-cloth-effector-eevee/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments/mantaflow-liquid-baked-cloth-effector-eevee">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/mantaflow-liquid-baked-cloth-effector-eevee">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36323492407">Actions #15</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/mantaflow-liquid-cloth-effector-eevee/preview.jpg"><source src="results/mantaflow-liquid-cloth-effector-eevee/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Mantaflow Liquid + Cloth Effector EEVEE</h2>
-            <p class="id">mantaflow-liquid-cloth-effector-eevee</p>
-            <p>Minimal true-liquid baseline: Blender 4.0.2 Mantaflow/FLIP liquid falls onto a red Cloth-shaped planar Fluid Effector. The Cloth is static in this first test; coupling is explicitly one-way from Cloth obstacle geometry into the liquid solve.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/ba7bf038a693c93817943455aa72f33a0224c328">ba7bf038a6</a></p>
-            <table></table>
-            <p class="links"><a href="results/mantaflow-liquid-cloth-effector-eevee/preview.jpg">preview</a> · <a href="results/mantaflow-liquid-cloth-effector-eevee/media.mp4">mp4</a> · <a href="results/mantaflow-liquid-cloth-effector-eevee/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments/mantaflow-liquid-cloth-effector-eevee">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/mantaflow-liquid-cloth-effector-eevee">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36322540415">Actions #13</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-water-blob-impact-v3-eevee/preview.jpg"><source src="results/cloth-water-blob-impact-v3-eevee/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Cloth Water-like Blob Impact V3 EEVEE</h2>
-            <p class="id">cloth-water-blob-impact-v3-eevee</p>
-            <p>V3 keeps the stable three-pass staged solve but uses a slightly expanded invisible collision shell for the final Cloth pass, aiming to remove the slime-eating/cloth-ingestion appearance without reintroducing floating.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/cd8e4fed283588aabf346283026d94c85a56c341">cd8e4fed28</a></p>
-            <table></table>
-            <p class="links"><a href="results/cloth-water-blob-impact-v3-eevee/preview.jpg">preview</a> · <a href="results/cloth-water-blob-impact-v3-eevee/media.mp4">mp4</a> · <a href="results/cloth-water-blob-impact-v3-eevee/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments/cloth-water-blob-impact-v3-eevee">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-water-blob-impact-v3-eevee">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-water-blob-impact-v3-eevee/cloth-water-blob-impact-v3-eevee.blend">cloth-water-blob-impact-v3-eevee.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36280045202">Actions #11</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-water-blob-impact-v2-eevee/preview.jpg"><source src="results/cloth-water-blob-impact-v2-eevee/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Cloth Water-like Blob Impact V2 EEVEE</h2>
-            <p class="id">cloth-water-blob-impact-v2-eevee</p>
-            <p>A three-pass staged Cloth/Soft Body experiment. A guide Cloth first drives the water-like blob, then a fresh visible Cloth is solved against the baked animated blob to reduce the floating/separation artifact observed in V1.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/9c95751a52e551055dfe28f8ccef8a9e95b16431">9c95751a52</a></p>
-            <table></table>
-            <p class="links"><a href="results/cloth-water-blob-impact-v2-eevee/preview.jpg">preview</a> · <a href="results/cloth-water-blob-impact-v2-eevee/media.mp4">mp4</a> · <a href="results/cloth-water-blob-impact-v2-eevee/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments/cloth-water-blob-impact-v2-eevee">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-water-blob-impact-v2-eevee">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-water-blob-impact-v2-eevee/cloth-water-blob-impact-v2-eevee.blend">cloth-water-blob-impact-v2-eevee.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36277898368">Actions #9</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-water-blob-impact-eevee/preview.jpg"><source src="results/cloth-water-blob-impact-eevee/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Cloth Water-like Blob Impact EEVEE</h2>
-            <p class="id">cloth-water-blob-impact-eevee</p>
-            <p>A Cloth sheet falls onto a translucent water-like Soft Body blob. This is deliberately not a true fluid simulation: it tests direct live Cloth/Soft Body collision coupling before moving to Mantaflow.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/9c95751a52e551055dfe28f8ccef8a9e95b16431">9c95751a52</a></p>
-            <table></table>
-            <p class="links"><a href="results/cloth-water-blob-impact-eevee/preview.jpg">preview</a> · <a href="results/cloth-water-blob-impact-eevee/media.mp4">mp4</a> · <a href="results/cloth-water-blob-impact-eevee/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments/cloth-water-blob-impact-eevee">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-water-blob-impact-eevee">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-water-blob-impact-eevee/cloth-water-blob-impact-eevee.blend">cloth-water-blob-impact-eevee.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36277898368">Actions #9</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-wrap-jelly-delayed-ball-eevee/preview.jpg"><source src="results/cloth-wrap-jelly-delayed-ball-eevee/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Cloth Wrap on Jelly with Delayed Ball EEVEE</h2>
-            <p class="id">cloth-wrap-jelly-delayed-ball-eevee</p>
-            <p>A smaller high-friction cloth settles over the jelly, then one heavier rigid-body ball is released exactly two seconds later to press the cloth into the deforming jelly surface.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/f55c3fbc6c038101ef5c61d61c0e4503d852996b">f55c3fbc6c</a></p>
-            <table></table>
-            <p class="links"><a href="results/cloth-wrap-jelly-delayed-ball-eevee/preview.jpg">preview</a> · <a href="results/cloth-wrap-jelly-delayed-ball-eevee/media.mp4">mp4</a> · <a href="results/cloth-wrap-jelly-delayed-ball-eevee/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments/cloth-wrap-jelly-delayed-ball-eevee">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-wrap-jelly-delayed-ball-eevee">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-wrap-jelly-delayed-ball-eevee/cloth-wrap-jelly-delayed-ball-eevee.blend">cloth-wrap-jelly-delayed-ball-eevee.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36248780462">Actions #4</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-drop-jelly-delayed-ball-eevee/preview.jpg"><source src="results/cloth-drop-jelly-delayed-ball-eevee/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Cloth Drop on Jelly with Delayed Ball EEVEE</h2>
-            <p class="id">cloth-drop-jelly-delayed-ball-eevee</p>
-            <p>A free cloth sheet falls onto a Soft Body jelly cube, then one rigid-body ball is released exactly two seconds later. The simulation is baked in two stable one-way passes before parallel EEVEE rendering.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/a1dece929a2f80ce1ba80b763f2561f5aef5d1c0">a1dece929a</a></p>
-            <table></table>
-            <p class="links"><a href="results/cloth-drop-jelly-delayed-ball-eevee/preview.jpg">preview</a> · <a href="results/cloth-drop-jelly-delayed-ball-eevee/media.mp4">mp4</a> · <a href="results/cloth-drop-jelly-delayed-ball-eevee/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments/cloth-drop-jelly-delayed-ball-eevee">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-drop-jelly-delayed-ball-eevee">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-drop-jelly-delayed-ball-eevee/cloth-drop-jelly-delayed-ball-eevee.blend">cloth-drop-jelly-delayed-ball-eevee.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36395574771">Actions #27</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/softbody-jelly-cube-ball-drop-eevee/preview.jpg"><source src="results/softbody-jelly-cube-ball-drop-eevee/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Soft Body Jelly Cube Ball Drop EEVEE</h2>
-            <p class="id">softbody-jelly-cube-ball-drop-eevee</p>
-            <p>Three gravity-driven rigid-body balls fall onto a rounded Soft Body jelly cube. Jelly deformation and rigid-body transforms are sampled sequentially and baked before parallel EEVEE frame rendering.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/8ac3d934380917610e7e43c9d2515009e48263db">8ac3d93438</a></p>
-            <table></table>
-            <p class="links"><a href="results/softbody-jelly-cube-ball-drop-eevee/preview.jpg">preview</a> · <a href="results/softbody-jelly-cube-ball-drop-eevee/media.mp4">mp4</a> · <a href="results/softbody-jelly-cube-ball-drop-eevee/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments/softbody-jelly-cube-ball-drop-eevee">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/softbody-jelly-cube-ball-drop-eevee">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/softbody-jelly-cube-ball-drop-eevee/softbody-jelly-cube-ball-drop-eevee.blend">softbody-jelly-cube-ball-drop-eevee.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36245202632">Actions #2</a></p>
-          </div>
-        </article>
-        
-        <article class="card">
-          <div class="visual"><video controls muted playsinline preload="metadata" poster="results/cloth-hammock-rigidbody-drop-eevee/preview.jpg"><source src="results/cloth-hammock-rigidbody-drop-eevee/media.mp4" type="video/mp4"></video></div>
-          <div class="body">
-            <h2>Cloth Hammock Rigid Body Drop EEVEE</h2>
-            <p class="id">cloth-hammock-rigidbody-drop-eevee</p>
-            <p>Hybrid cloth + rigid-body experiment: 12 staggered rigid-body spheres fall into a four-corner-pinned cloth hammock. A hidden passive rigid proxy provides stable two-system coupling while the visible cloth reacts to the moving spheres. Physics is baked before parallel EEVEE rendering.</p>
-            <p class="source">source <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/commit/872f3e7cda2fe01f2da6a661143f47c1f3302168">872f3e7cda</a></p>
-            <table></table>
-            <p class="links"><a href="results/cloth-hammock-rigidbody-drop-eevee/preview.jpg">preview</a> · <a href="results/cloth-hammock-rigidbody-drop-eevee/media.mp4">mp4</a> · <a href="results/cloth-hammock-rigidbody-drop-eevee/validation.json">validation</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/experiments/cloth-hammock-rigidbody-drop-eevee">source</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/tree/main/results/cloth-hammock-rigidbody-drop-eevee">result</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/blob/main/results/cloth-hammock-rigidbody-drop-eevee/cloth-hammock-rigidbody-drop-eevee.blend">cloth-hammock-rigidbody-drop-eevee.blend</a> · <a href="https://github.com/2rwa/tmp-blender-rigid-cloth/actions/runs/36243544214">Actions #1</a></p>
-          </div>
-        </article>
-        
-</main>
-<footer>Generated from committed results. Code: MIT-0 · Generated assets: CC0-1.0 · Third-party source licenses/terms apply where applicable. / コード: MIT-0 · 生成物: CC0-1.0 · 第三者由来部分は利用元のライセンス・利用条件に従います。</footer>
+  <section class="statusbar">
+    <div><strong id="experimentCount">–</strong><span>experiments</span></div>
+    <div><strong id="categoryCount">–</strong><span>categories</span></div>
+    <div><strong id="systemCount">–</strong><span>systems</span></div>
+    <div><strong id="visibleCount">–</strong><span>visible</span></div>
+  </section>
+
+  <section class="toolbar" aria-label="Filters">
+    <label class="search">
+      <span>Search</span>
+      <input id="searchInput" type="search" placeholder="id / title / description / tag">
+    </label>
+    <label>
+      <span>Category</span>
+      <select id="categoryFilter"><option value="">All</option></select>
+    </label>
+    <label>
+      <span>System</span>
+      <select id="systemFilter"><option value="">All</option></select>
+    </label>
+    <label>
+      <span>Tag</span>
+      <select id="tagFilter"><option value="">All</option></select>
+    </label>
+    <label>
+      <span>Sort</span>
+      <select id="sortOrder">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="title">Title</option>
+        <option value="category">Category</option>
+      </select>
+    </label>
+  </section>
+
+  <section class="active-filter" id="activeFilter" hidden></section>
+  <main id="cards" class="cards" aria-live="polite"></main>
+  <p id="emptyState" class="empty" hidden>No experiments match the current filters.</p>
+
+  <footer>
+    <p>Index is generated from <code>results/</code>. SQLite is the relational source for aggregation; the page reads a denormalized JSON export.</p>
+  </footer>
+
+  <template id="cardTemplate">
+    <article class="card">
+      <div class="media"></div>
+      <div class="body">
+        <div class="badges"></div>
+        <h2></h2>
+        <p class="id"></p>
+        <p class="description"></p>
+        <dl class="metrics"></dl>
+        <details>
+          <summary>Parameters / data</summary>
+          <div class="detail-grid"></div>
+        </details>
+        <nav class="links"></nav>
+      </div>
+    </article>
+  </template>
+
+  <script src="./app.js" defer></script>
 </body>
 </html>
