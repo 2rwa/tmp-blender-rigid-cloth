@@ -60,4 +60,21 @@ Follow `2rwa/chatgpt-workspace/docs/build-test-fix.md`:
 - use Actions for long tests
 - for generated result writers: pull/rebase → generate → add → commit → push
 
-The workflow's physics prepare job currently has a 60-minute timeout.
+## Blender 5.2 Cloth Tearing current restart point
+
+Latest detailed findings:
+
+- `docs/notes/blender-5.2-cloth-tearing-impact-findings-2026-09-29.md`
+
+Current important state:
+
+- Blender 5.2 impact/tearing heavy jobs use a **180-minute timeout**.
+- The current batch supports **10 parallel experiments**.
+- The shared impact script supports **144-frame / 6-second** runs and configurable camera distance.
+- Run #9 completed ten long-view cases and Pages publication successfully.
+- A threshold-1.95 no-contact control stayed stable for all 144 frames.
+- The corresponding normal collider case changed topology and showed a large cloth displacement at frame 2, well before planned impact.
+- Treat collider/effectors initialization and cloth mechanical parameters as unresolved variables.
+- Next sweeps should include Stretchiness, Bendiness, cloth Mass, Linear Damping, Substeps, Constraint Steps, and collider parameters rather than only Tearing Threshold.
+
+For this Blender 5.2 line, inspect the latest workflow and results before assuming older 60/120-minute limits still apply.

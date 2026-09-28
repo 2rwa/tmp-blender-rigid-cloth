@@ -309,3 +309,12 @@ Policy:
 - failures and timeouts remain useful experimental results and should be recorded rather than hidden.
 
 This policy applies to the Blender 4.0.2 and Blender 5.2 experiment lines in this repository.
+
+
+## Follow-up note — 2026-09-29
+
+Impact, threshold-sweep, long-run, no-contact-control, collider/effectors, and cloth-rigidity findings continued in:
+
+- `docs/notes/blender-5.2-cloth-tearing-impact-findings-2026-09-29.md`
+
+The 2026-09-29 note supersedes the older 120-minute operational assumption for the current Blender 5.2 impact batch: heavy jobs are presently configured for **180 minutes**, with up to **10 parallel render cases**.
