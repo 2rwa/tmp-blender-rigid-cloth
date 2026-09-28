@@ -62,6 +62,16 @@ def load_entries() -> list[dict]:
             "has_media": (result_dir / "media.mp4").is_file(),
             "blend_files": blend_files,
         })
+    # GitHub Actions run ids are monotonically increasing, so they provide a
+    # stable approximation of publication/upload order. Show newest results
+    # first; entries without a run id fall back behind published entries.
+    entries.sort(
+        key=lambda entry: (
+            int(entry["run_id"]) if str(entry.get("run_id", "")).isdigit() else -1,
+            entry["id"],
+        ),
+        reverse=True,
+    )
     return entries
 
 
@@ -98,7 +108,7 @@ def render(entries: list[dict], docs_mode: bool) -> str:
 
         if entry["has_media"]:
             visual = (
-                f'<video controls autoplay muted loop playsinline poster="{asset_root}/preview.jpg">'
+                f'<video controls muted playsinline preload="metadata" poster="{asset_root}/preview.jpg">'
                 f'<source src="{asset_root}/media.mp4" type="video/mp4">'
                 f'</video>'
             )
