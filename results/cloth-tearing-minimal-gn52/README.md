@@ -2,8 +2,8 @@
 
 Experimental Blender 5.2.2 Geometry Nodes Cloth Dynamics / XPBD tearing test. A top-pinned hanging cloth is pulled by strong gravity and validated by actual topology changes.
 
-- source commit: \`aa847bbbfacecb13dc5daee7524385f70deb195c\`
-- Actions run: \`7\` (\`36392989570\`)
+- source commit: \`fe22bba134458c8ce9869945bad391ca88169237\`
+- Actions run: \`9\` (\`36395395118\`)
 - Blender line: **5.2 experimental Cloth Dynamics / Tearing**
 
 ![Latest preview](./preview.jpg)
