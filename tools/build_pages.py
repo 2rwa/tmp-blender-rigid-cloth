@@ -4,6 +4,7 @@ import html
 import json
 import re
 import shutil
+import subprocess
 from pathlib import Path
 
 
@@ -11,7 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 EXPERIMENTS = ROOT / "experiments"
 RESULTS = ROOT / "results"
 DOCS = ROOT / "docs"
-GITHUB_BASE = "https://github.com/2rwa/tmp-blender-rigid-cloth"\nGALLERY_REVISION = "2026-09-28-first-publish-order"
+GITHUB_BASE = "https://github.com/2rwa/tmp-blender-rigid-cloth"
+GALLERY_REVISION = "2026-09-28-first-publish-order"
 
 
 def first_publish_epoch(result_dir: Path) -> int:

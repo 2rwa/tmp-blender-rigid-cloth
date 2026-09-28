@@ -28,6 +28,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Cheap Python preflight
+        run: python3 -m py_compile tools/build_pages.py
+
       - name: Build Pages gallery
         run: python3 tools/build_pages.py
 
