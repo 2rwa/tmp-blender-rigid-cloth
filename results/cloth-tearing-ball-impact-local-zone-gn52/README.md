@@ -2,8 +2,8 @@
 
 A smaller faster sphere strikes the center of a hanging cloth. Tearing is allowed only in a compact circular impact zone to test puncture-like local failure.
 
-- source commit: `6ba74a94efe805991750ee7469091da31817a27d`
-- Actions run: `3` (`36411733508`)
+- source commit: `2e1914dc1c2f97f3ac0860ff4dd98978939eeb1e`
+- Actions run: `4` (`36411738548`)
 - Blender line: **5.2 experimental Cloth Dynamics / Tearing**
 
 ![Latest preview](./preview.jpg)
